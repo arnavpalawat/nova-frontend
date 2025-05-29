@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ProgressBar from "@/app/components/ProgressBar";
 import React from "react";
+import CategoryButton from "@/app/components/EventSelector";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,22 +21,23 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-          <div className="p-4 bg-[#2d2e2a] min-h-screen flex items-center justify-center">
-              <div className="w-full max-w-xl">
-                  <ProgressBar percentage={10} />
-              </div>
-          </div>
+    return (
+        <html lang="en">
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+        <div className="min-h-screen bg-[#333533] p-4 flex flex-col items-start justify-start">
+            <CategoryButton />
+            <div className="mt-4 w-full max-w-2/4">
+                <ProgressBar percentage={10} />
+            </div>
+        </div>
         {children}
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }
