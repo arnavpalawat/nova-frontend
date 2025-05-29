@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ProgressBar from "@/app/components/ProgressBar";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +29,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <div className="p-4 bg-[#2d2e2a] min-h-screen flex items-center justify-center">
+              <div className="w-full max-w-xl">
+                  <ProgressBar percentage={10} />
+              </div>
+          </div>
         {children}
       </body>
     </html>
