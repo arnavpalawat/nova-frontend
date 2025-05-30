@@ -28,9 +28,14 @@ export default function Dashboard() {
                     <h2 className="mb-4 text-xl">Calendar Heatmap</h2>
                     <CalendarHeatmap data={calendarData} />
                 </section>
-                <section className="flex-1">
-                    <h2 className="mb-4 text-xl">By Instructional Area</h2>
-                    <DonutChart data={donutData} colors={donutColors} />
+                <section className="flex-1 ">
+                    <h2 className="mb-4 text-xl">Core Instructional Areas</h2>
+                    <div className={"float-left"}>
+                        <DonutChart data={donutData} colors={donutColors} />
+                    </div>
+                    <div className={"float-left px-2.5"}>
+                        <DonutChart data={donutData} colors={donutColors} />
+                    </div>
                 </section>
             </div>
         </div>

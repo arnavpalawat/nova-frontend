@@ -16,11 +16,11 @@ export function CalendarHeatmap({ data }) {
                 {data.map((monthData: number[], i: number) => (
                     <div key={i} className="flex items-center gap-2">
                         <div className="w-16 text-sm text-[#d5d4f0]">{months[i]}</div>
-                        <div className="flex gap-1">
+                        <div className="flex gap-1 ">
                             {monthData.map((val: number, j: number) => (
                                 <div
                                     key={j}
-                                    className={`w-4 h-4 rounded-md ${
+                                    className={`w-4 h-4 rounded-md transition duration-500 hover:scale-125 ${
                                         val > 0
                                             ? val > 1
                                                 ? "bg-blue-300"
