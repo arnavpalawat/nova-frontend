@@ -4,6 +4,7 @@ import "./globals.css";
 import ProgressBar from "@/app/components/ProgressBar";
 import React from "react";
 import CategoryButton from "@/app/components/EventSelector";
+import Logo from "@/app/components/Logo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,11 +31,18 @@ export default function RootLayout({
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-        <div className="min-h-screen bg-[#333533] p-4 flex flex-col items-start justify-start">
+        <div className="min-h-screen bg-[#333533] p-4 flex flex-col items-start justify-start w-full">
             <CategoryButton />
             <div className="mt-4 w-full max-w-2/4">
                 <ProgressBar percentage={10} />
             </div>
+
+
+            {/*<div className="items-end">*/}
+            {/*    <Logo></Logo>*/}
+            {/*</div>*/}
+
+
         </div>
         {children}
         </body>
