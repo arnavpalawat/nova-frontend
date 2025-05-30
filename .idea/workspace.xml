@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/Logo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/CalendarButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
     </list>
@@ -66,9 +66,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/images" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
@@ -102,7 +102,7 @@
       <updated>1748453092407</updated>
       <workItem from="1748453093446" duration="219000" />
       <workItem from="1748453344357" duration="2567000" />
-      <workItem from="1748539315357" duration="4334000" />
+      <workItem from="1748539315357" duration="7396000" />
     </task>
     <servers />
   </component>
