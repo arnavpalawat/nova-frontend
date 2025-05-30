@@ -2,7 +2,7 @@
 
 :root {
   --background: #3B3C36;
-  --foreground: #171717;
+  --foreground: #191a18;
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #191a18;
+    --foreground: #191a18;
   }
 }
 
