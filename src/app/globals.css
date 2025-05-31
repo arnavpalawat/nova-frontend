@@ -1,8 +1,26 @@
+@font-face {
+  font-family: Lora;
+  src: url('../../src/assets/fonts/Lora-Italic-VariableFont_wght.ttf')
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url('../../src/assets/fonts/Poppins-SemiBold.ttf')
+}
+
 @import "tailwindcss";
 
 :root {
   --background: #3B3C36;
   --foreground: #191a18;
+}
+
+@theme font {
+  --font-Lora: Lora, "sans-serif"
+}
+
+@theme font {
+  --font-Poppins: Poppins, "sans-serif"
 }
 
 @theme inline {

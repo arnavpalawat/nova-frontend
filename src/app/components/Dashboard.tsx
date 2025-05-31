@@ -22,7 +22,9 @@ export default function Dashboard() {
             <div className="flex gap-8">
                 <section className="flex-1">
                     <h2 className="mb-4 text-xl font-semibold">This Week in NOVA</h2>
-                    <BarChart data={barData} />
+                    <div className={'py-5'}>
+                        <BarChart data={barData} />
+                    </div>
                 </section>
                 <section className="flex-1">
                     <h2 className="mb-4 text-xl font-semibold">Calendar Heatmap</h2>
