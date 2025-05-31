@@ -14,11 +14,12 @@ export default function Dashboard() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], // Apr
         [1, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], // Apr
     ];
-    const donutData = [60, 40];
+    const donut1Data = [60, 40];
+    const donut2Data = [30, 70];
     const donutColors = ["#565f8a", "#bae3f8"];
 
     return (
-        <div className="p-8 bg-[#2F3438] text-[#A6C8FF] justify-evenly w-full">
+        <div className="p-8 bg-[#2F3438] text-[#e4e2f8] justify-evenly w-full my-20">
             <div className="flex gap-8">
                 <section className="flex-1">
                     <h2 className="mb-4 text-xl font-semibold">This Week in NOVA</h2>
@@ -32,11 +33,11 @@ export default function Dashboard() {
                 </section>
                 <section className="flex-1 ">
                     <h2 className="mb-4 text-xl font-semibold">Core Instructional Areas</h2>
-                    <div className={"float-left"}>
-                        <DonutChart data={donutData} colors={donutColors} />
+                    <div className={"float-left my-1"}>
+                        <DonutChart data={donut1Data} colors={donutColors} label={"Product-Service Marketing"}/>
                     </div>
-                    <div className={"float-left px-2.5"}>
-                        <DonutChart data={donutData} colors={donutColors} />
+                    <div className={"float-left px-2.5 my-1"}>
+                        <DonutChart data={donut2Data} colors={donutColors}  label={"Promotion"}/>
                     </div>
                 </section>
             </div>

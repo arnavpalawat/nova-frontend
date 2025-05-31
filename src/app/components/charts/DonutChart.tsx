@@ -3,7 +3,7 @@ import React from "react";
 // 3. Donut Chart component
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-export function DonutChart({ data, colors}) {
+export function DonutChart({ data, colors, label}) {
     // data = array of numeric values, colors = array of colors, labels = array of labels
     const total = data.reduce((a: number, b: number) => a + b, 0);
 
@@ -34,9 +34,12 @@ export function DonutChart({ data, colors}) {
     };
 
     return (
-        <svg viewBox="-1 -1 2 2" className="w-48 h-48 mx-auto">
-            {data.map((value: number) => createSlice(value / total, data.indexOf(value)))}
-            <circle cx="0" cy="0" r="0.5" fill="#222" />
-        </svg>
+        <div className={"columns-1 justify-items-center"}>
+            <svg viewBox="-1 -1 2 2" className="w-48 h-48 mx-auto">
+                {data.map((value: number) => createSlice(value / total, data.indexOf(value)))}
+                <circle cx="0" cy="0" r="0.5" fill="#222" />
+            </svg>
+            <p>{label}</p>
+        </div>
     );
 }

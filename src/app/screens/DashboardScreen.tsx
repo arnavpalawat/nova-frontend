@@ -9,7 +9,7 @@ import Dashboard from "@/app/components/Dashboard";
 
 const DashboardScreen = () => {
     return (
-        <div className="min-h-screen bg-[#2F3438] flex flex-col items-start justify-start w-full">
+        <div className="max-h-screen min-h-lvh bg-[#2F3438] flex flex-col items-start justify-start w-full">
             {/* Top section with horizontal padding */}
             <div className="w-full px-5">
                 <div className="w-3/4">

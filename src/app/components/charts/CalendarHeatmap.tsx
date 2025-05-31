@@ -8,10 +8,15 @@ export function CalendarHeatmap({ data }) {
     const monthsMap = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const month = monthsMap[currentMonthIndex];
     const months = [monthsMap[currentMonthIndex-3], "", monthsMap[currentMonthIndex-2], "", monthsMap[currentMonthIndex-1], "", month];
-
+    let total = 0;
+    for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[0].length; j++) {
+            total += data[i][j];
+        }
+    }
     return (
         <div>
-            <h3 className="text-lg font-semibold mb-2">15 Contributions in 2025</h3>
+            <h3 className="text-lg mb-2 ">{total} Flashcards in the Last 4 Months</h3>
             <div className="flex flex-col gap-2">
                 {data.map((monthData: number[], i: number) => (
                     <div key={i} className="flex items-center gap-2">

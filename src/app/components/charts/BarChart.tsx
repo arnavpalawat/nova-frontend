@@ -14,17 +14,17 @@ export function BarChart({ data }: BarChartProps) {
     return (
             <div className="w-full max-w-sm h-40 flex items-end gap-1">
                 {data.map((val, i) => (
-                    <div className="flex flex-col items-center w-full" key={i}>
+                    <div className="flex flex-col items-center w-full mx-0.25" key={i}>
                         <div
                             style={{ height: `${(val / maxVal) * 160}px` }}
-                            className={`w-full rounded-t-lg transition duration-500 hover:scale-110 ${
-                                i % 2 === 0 ? "bg-blue-300" : "bg-gray-400"
+                            className={`w-full rounded-t-lg transition duration-500 hover:scale-105 ${
+                                val > 0.75 * maxVal ? "bg-[#5c5d8c]" : "bg-[#b5e3f2]"
                             }`}
                         />
 
-                        <div>
+                        <p className={'text-[#e4e2f8]'}>
                             {date[i]}
-                        </div>
+                        </p>
                     </div>
 
                 ))}

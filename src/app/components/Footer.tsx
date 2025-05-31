@@ -4,9 +4,12 @@ import { Home, Book, Settings } from 'lucide-react';
 
 type Tab = 'home' | 'book' | 'settings';
 
-const BottomNav = () => {
-    const [selected, setSelected] = useState<Tab>('home');
+interface BottomNavProps {
+    selected: Tab;
+    setSelected: (tab: Tab) => void;
+}
 
+const BottomNav = ({ selected, setSelected }: BottomNavProps) => {
     return (
         <div className="fixed bottom-0 w-full flex justify-center bg-[#2F3438]">
             <div
@@ -49,3 +52,4 @@ const BottomNav = () => {
 };
 
 export default BottomNav;
+export type { Tab };

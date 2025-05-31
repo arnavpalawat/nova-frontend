@@ -4,7 +4,7 @@ import Logo from "./Logo";
 
 const Header: React.FC = () => {
     return (
-        <div className="flex items-center justify-between w-full bg-[#2F3438] px-5 py-3">
+        <div className="flex items-center justify-between w-full bg-[#2F3438] px-5">
             {/* Left section (75%) */}
             <div className="w-3/4">
                 <CategoryButton />

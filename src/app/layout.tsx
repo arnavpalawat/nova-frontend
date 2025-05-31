@@ -1,29 +1,26 @@
+'use client';
+import { useState } from 'react';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DashboardScreen from "@/app/screens/DashboardScreen";
-import BottomNav from "@/app/components/Footer";
-import React from "react";
-import CategoryButton from "@/app/components/EventSelector";
-import Logo from "@/app/components/Logo";
+import BottomNav, { Tab } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 
-
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Nova",
-  description: "Next Gen DECA Studying",
-};
+
 export default function RootLayout() {
+    const [selected, setSelected] = useState<Tab>('home');
+
     return (
         <html lang="en">
         <head>
@@ -32,10 +29,11 @@ export default function RootLayout() {
                 href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             />
         </head>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <Header/>
-            <DashboardScreen></DashboardScreen>
-            <BottomNav />
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-visible`}>
+
+        <Header />
+        <DashboardScreen />
+        <BottomNav selected={selected} setSelected={setSelected} />
         </body>
         </html>
     );
