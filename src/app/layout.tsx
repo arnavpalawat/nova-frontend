@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ProgressBar from "@/app/components/ProgressBar";
-import React from "react";
-import CalendarButton from "@/app/components/CalendarButton";
-import CategoryButton from "@/app/components/EventSelector";
+import DashboardScreen from "@/app/screens/DashboardScreen";
 import BottomNav from "@/app/components/Footer";
-import Announcement from "@/app/components/Announcement";
-import Dashboard from "@/app/components/Dashboard";
+import React from "react";
+import CategoryButton from "@/app/components/EventSelector";
+import Logo from "@/app/components/Logo";
+import Header from "@/app/components/Header";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,23 +33,9 @@ export default function RootLayout() {
             />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="min-h-screen bg-[#2F3438] flex flex-col items-start justify-start w-full">
-
-            {/* Top section with horizontal padding */}
-            <div className="w-full px-5 py-5">
-                <CategoryButton />
-                <div className="mt-4 w-full max-w-2/4">
-                    <ProgressBar percentage={72} />
-                </div>
-                <Announcement />
-                <div className="mt-4 w-full max-w-1/16"></div>
-                <CalendarButton />
-            </div>
-            <Dashboard></Dashboard>
-            {/* Bottom navigation */}
+            <Header/>
+            <DashboardScreen></DashboardScreen>
             <BottomNav />
-
-        </div>
         </body>
         </html>
     );

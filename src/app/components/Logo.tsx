@@ -1,9 +1,11 @@
 import React from 'react';
-import logo from 'src/images/image.png';
 
 function Logo() {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={logo.src} alt="Logo" />;
+    return <div>
+        <h1 className={'font-Familijen-Grotesk text-6xl text-[#A6C8FF]'}>
+            NOVA
+        </h1>
+    </div>;
 }
 
 export default Logo;

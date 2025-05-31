@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: Lora;
   src: url('../../src/assets/fonts/Lora-Italic-VariableFont_wght.ttf')
@@ -8,7 +10,11 @@
   src: url('../../src/assets/fonts/Poppins-SemiBold.ttf')
 }
 
-@import "tailwindcss";
+@font-face {
+  font-family: Familijen-Grotesk;
+  src: url('../../src/assets/fonts/FamiljenGrotesk-VariableFont_wght.ttf')
+}
+
 
 :root {
   --background: #3B3C36;
@@ -21,6 +27,10 @@
 
 @theme font {
   --font-Poppins: Poppins, "sans-serif"
+}
+
+@theme font {
+  --font-Familijen-Grotesk: Familijen-Grotesk, "sans-serif"
 }
 
 @theme inline {
