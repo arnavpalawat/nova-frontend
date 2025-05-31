@@ -21,15 +21,15 @@ export default function Dashboard() {
         <div className="p-8 bg-[#2F3438] text-[#A6C8FF] justify-evenly w-full">
             <div className="flex gap-8">
                 <section className="flex-1">
-                    <h2 className="mb-4 text-xl">This Week in NOVA</h2>
+                    <h2 className="mb-4 text-xl font-semibold">This Week in NOVA</h2>
                     <BarChart data={barData} />
                 </section>
                 <section className="flex-1">
-                    <h2 className="mb-4 text-xl">Calendar Heatmap</h2>
+                    <h2 className="mb-4 text-xl font-semibold">Calendar Heatmap</h2>
                     <CalendarHeatmap data={calendarData} />
                 </section>
                 <section className="flex-1 ">
-                    <h2 className="mb-4 text-xl">Core Instructional Areas</h2>
+                    <h2 className="mb-4 text-xl font-semibold">Core Instructional Areas</h2>
                     <div className={"float-left"}>
                         <DonutChart data={donutData} colors={donutColors} />
                     </div>

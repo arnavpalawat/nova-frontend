@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/nova.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nova.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/Announcement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Announcement.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/charts/BarChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/BarChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/CalendarHeatmap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/CalendarHeatmap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
