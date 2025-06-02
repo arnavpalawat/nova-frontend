@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import DashboardScreen from "@/app/screens/DashboardScreen";
-import SettingsScreen from "@/app/screens/SettingsScreen";
-import BottomNav, { Tab } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
+
+import AuthenticatedFlow from "@/app/AuthenticatedFlow";
+import AuthFlow from "@/app/AuthFlow";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -17,23 +17,17 @@ const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
 });
+let flow = "Post";
 
 export default function RootLayout() {
-    const [selected, setSelected] = useState<Tab>('home');
-
-    const renderScreen = () => {
-        switch (selected) {
-            case 'home':
-                return (
-                    <DashboardScreen />);
-            case 'book':
-                return <DashboardScreen />;
-            case 'settings':
-                return <SettingsScreen />;
-            default:
-                return <DashboardScreen />;
+    function handleFlows() {
+        switch(flow) {
+            case 'Auth':
+                return <AuthFlow/>
+            case 'Post':
+                return <AuthenticatedFlow/>
         }
-    };
+    }
 
     return (
         <html lang="en">
@@ -44,9 +38,9 @@ export default function RootLayout() {
             />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-visible`}>
-        <Header />
-        {renderScreen()}
-        <BottomNav selected={selected} setSelected={setSelected} />
+        <div className={"min-h-screen"}>
+            {handleFlows()}
+        </div>
         </body>
         </html>
     );

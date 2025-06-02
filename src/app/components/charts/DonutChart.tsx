@@ -10,8 +10,8 @@ export function DonutChart({ data, colors, label}) {
     let cumulativePercent = 0;
 
     const getCoordinatesForPercent = (percent: number) => {
-        const x = Math.cos(2 * Math.PI * percent);
-        const y = Math.sin(2 * Math.PI * percent);
+        const x = parseFloat(Math.cos(2 * Math.PI * percent).toFixed(6));
+        const y = parseFloat(Math.sin(2 * Math.PI * percent).toFixed(6));
         return [x, y];
     };
 

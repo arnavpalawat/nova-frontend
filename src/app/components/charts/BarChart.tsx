@@ -7,10 +7,20 @@ interface BarChartProps {
 export function BarChart({ data }: BarChartProps) {
     const maxVal = Math.max(...data);
     const currentDate = new Date();
-    const currentDayIndex = currentDate.getDay();
+    let currentDayIndex = currentDate.getDay();
     const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const day = dayMap[currentDayIndex];
-    const date = [dayMap[currentDayIndex-6], dayMap[currentDayIndex-5],dayMap[currentDayIndex-4],dayMap[currentDayIndex-3], dayMap[currentDayIndex-2], dayMap[currentDayIndex-1], day];
+    const date: string[] = [];
+    for (let i = 0; i < 7; i++) {
+
+        date.push(dayMap[currentDayIndex]);
+        if (currentDayIndex === 0) {
+            currentDayIndex = 6;
+        } else {
+            currentDayIndex--;
+        }
+    }
+    date.reverse()
+
     return (
             <div className="w-full max-w-sm h-40 flex items-end gap-1">
                 {data.map((val, i) => (
