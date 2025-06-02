@@ -24,7 +24,7 @@ export function BarChart({ data }: BarChartProps) {
     return (
             <div className="w-full max-w-sm h-40 flex items-end gap-1">
                 {data.map((val, i) => (
-                    <div className="flex flex-col items-center w-full mx-0.25" key={i}>
+                    <div title={val.toString()} className="flex flex-col items-center w-full mx-0.25" key={i}>
                         <div
                             style={{ height: `${(val / maxVal) * 160}px` }}
                             className={`w-full rounded-t-lg transition duration-500 hover:scale-105 ${

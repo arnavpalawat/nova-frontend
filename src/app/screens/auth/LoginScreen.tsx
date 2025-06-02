@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function LoginScreen() {
     return (
-        <div className="justify-items-center align-middle h-screen bg-cover bg-center bg-[url('../assets/images/auth_background.png')]">
-            <div className="bg-[#2F3438] p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <div className="min-h-lvh p-0 bg-cover bg-center bg-[url('../assets/images/auth_background.png')] relative">
+            <div className="bg-[#2F3438] p-8 rounded-2xl shadow-lg w-full max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <h2 className="text-2xl font-bold mb-6 text-center text-[#FFF]">Login</h2>
                 <form className="space-y-4">
                     <div>

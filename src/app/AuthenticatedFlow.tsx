@@ -1,15 +1,16 @@
 'use client';
 import { useState } from 'react';
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import DashboardScreen from "@/app/screens/DashboardScreen";
-import SettingsScreen from "@/app/screens/SettingsScreen";
+import ProfilePage from "@/app/screens/SettingsScreen";
 import BottomNav, { Tab } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 
 
-export default function AuthenticatedFlow() {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+export default function AuthenticatedFlow({setFlow}) {
     const [selected, setSelected] = useState<Tab>('home');
 
     const renderScreen = () => {
@@ -20,7 +21,7 @@ export default function AuthenticatedFlow() {
             case 'book':
                 return <DashboardScreen />;
             case 'settings':
-                return <SettingsScreen />;
+                return <ProfilePage setFlow={setFlow} />;
         }
     };
 

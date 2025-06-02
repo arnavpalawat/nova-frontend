@@ -2,9 +2,6 @@
 import { useState } from 'react';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-import Header from "@/app/components/Header";
-
 import AuthenticatedFlow from "@/app/AuthenticatedFlow";
 import AuthFlow from "@/app/AuthFlow";
 
@@ -17,15 +14,16 @@ const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
 });
-let flow = "Post";
 
 export default function RootLayout() {
+    const [flow, setFlow] = useState("Post");
+
     function handleFlows() {
-        switch(flow) {
+        switch (flow) {
             case 'Auth':
-                return <AuthFlow/>
+                return <AuthFlow />;
             case 'Post':
-                return <AuthenticatedFlow/>
+                return <AuthenticatedFlow setFlow={setFlow} />;
         }
     }
 

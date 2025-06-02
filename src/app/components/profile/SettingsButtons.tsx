@@ -11,8 +11,11 @@ const ProfileButton = ({ label, onClick, variant = 'default' }) => {
         danger: 'bg-[#a53a39] text-white',
     };
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const vars = variants[variant];
     return (
-        <button onClick={onClick} className={`${baseStyle} ${variants[variant]}`}>
+        <button onClick={onClick} className={`${baseStyle} ${vars}`}>
             <span>{label}</span>
             <ChevronRight className="h-8 w-8" />
         </button>

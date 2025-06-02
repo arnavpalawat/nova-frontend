@@ -8,7 +8,7 @@ export default function AuthFlow() {
 
 
     return (
-        <div className={"max-h-screen min-h-lvh"}>
+        <div className={"min-h-screen min-w-screen"}>
             login === true ? <LoginScreen/>
         </div>
     );
