@@ -36,7 +36,7 @@ export function DonutChart({ data, colors, label}) {
     return (
         <div className={"columns-1 justify-items-center"}>
             <svg viewBox="-1 -1 2 2" className="w-48 h-48 mx-auto">
-                {data.map((value: number) => createSlice(value / total, data.indexOf(value)))}
+                {data.map((value: number, index: number) => createSlice(value / total, index))}
                 <circle cx="0" cy="0" r="0.5" fill="#222" />
             </svg>
             <p>{label}</p>

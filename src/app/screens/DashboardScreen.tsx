@@ -20,7 +20,7 @@ const DashboardScreen = () => {
                 <CalendarButton />
             </div>
 
-            <Dashboard />
+            <Dashboard/>
 
             {/* Bottom navigation */}
 

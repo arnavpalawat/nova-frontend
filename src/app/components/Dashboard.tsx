@@ -19,7 +19,7 @@ export default function Dashboard() {
     const donutColors = ["#565f8a", "#bae3f8"];
 
     return (
-        <div className="p-8 bg-[#2F3438] text-[#e4e2f8] justify-evenly w-full my-20">
+        <div className="p-8 bg-[#2F3438] text-[#e4e2f8] justify-evenly w-full my-20 animate__animated animate__fadeInUp duration-25 fast">
             <div className="flex gap-8">
                 <section className="flex-1">
                     <h2 className="mb-4 text-xl font-semibold">This Week in NOVA</h2>

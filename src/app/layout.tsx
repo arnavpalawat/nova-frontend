@@ -1,9 +1,10 @@
 'use client';
 import { useState } from 'react';
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
 import DashboardScreen from "@/app/screens/DashboardScreen";
+import SettingsScreen from "@/app/screens/SettingsScreen";
 import BottomNav, { Tab } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 
@@ -17,9 +18,22 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-
 export default function RootLayout() {
     const [selected, setSelected] = useState<Tab>('home');
+
+    const renderScreen = () => {
+        switch (selected) {
+            case 'home':
+                return (
+                    <DashboardScreen />);
+            case 'book':
+                return <DashboardScreen />;
+            case 'settings':
+                return <SettingsScreen />;
+            default:
+                return <DashboardScreen />;
+        }
+    };
 
     return (
         <html lang="en">
@@ -30,9 +44,8 @@ export default function RootLayout() {
             />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-visible`}>
-
         <Header />
-        <DashboardScreen />
+        {renderScreen()}
         <BottomNav selected={selected} setSelected={setSelected} />
         </body>
         </html>

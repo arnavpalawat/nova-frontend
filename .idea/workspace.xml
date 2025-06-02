@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/components/profile/ProfileCircle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/profile/ProfileText.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/profile/SettingsButtons.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/Announcement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Announcement.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/BarChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/BarChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/CalendarHeatmap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/CalendarHeatmap.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/charts/DonutChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/DonutChart.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" afterDir="false" />
@@ -71,11 +73,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/components/profile" />
       <recent name="$PROJECT_DIR$/src/assets/fonts" />
       <recent name="$PROJECT_DIR$/src/assets" />
       <recent name="$PROJECT_DIR$/src/images" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">

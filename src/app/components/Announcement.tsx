@@ -7,7 +7,7 @@ const Announcement = () => {
                 className="p-5 text-[5rem] text-[#d5d4f0] font-Poppins font-light leading-tight
                    bg-gradient-to-r from-[#d5d4f0] via-[#f0efff] to-[#d5d4f0]
                    bg-[length:200%_100%] bg-clip-text text-transparent
-                   animate__animated animate__fadeInDown duration-25 fast
+
                    "
             >
                 <span className="font-extrabold ">Get Ready</span>

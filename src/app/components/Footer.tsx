@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import { Home, Book, Settings } from 'lucide-react';
 
 type Tab = 'home' | 'book' | 'settings';
@@ -22,7 +21,7 @@ const BottomNav = ({ selected, setSelected }: BottomNavProps) => {
                     <button
                         onClick={() => setSelected('home')}
                         className={`${
-                            selected === 'home' ? 'bg-[#5c5d8c]' : ''
+                            selected === 'home' ? 'bg-[#6b6ba3]' : ''
                         } p-4 rounded-full transition-colors duration-300`}
                     >
                         <Home className="text-white w-10 h-10" />
@@ -31,7 +30,7 @@ const BottomNav = ({ selected, setSelected }: BottomNavProps) => {
                     <button
                         onClick={() => setSelected('book')}
                         className={`${
-                            selected === 'book' ? 'bg-[#5c5d8c]' : ''
+                            selected === 'book' ? 'bg-[#6b6ba3]' : ''
                         } p-4 rounded-full transition-colors duration-300`}
                     >
                         <Book className="text-white w-10 h-10" />
@@ -40,7 +39,7 @@ const BottomNav = ({ selected, setSelected }: BottomNavProps) => {
                     <button
                         onClick={() => setSelected('settings')}
                         className={`${
-                            selected === 'settings' ? 'bg-[#5c5d8c]' : ''
+                            selected === 'settings' ? 'bg-[#6b6ba3]' : ''
                         } p-4 rounded-full transition-colors duration-300`}
                     >
                         <Settings className="text-white w-10 h-10" />
