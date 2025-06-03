@@ -4,6 +4,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthenticatedFlow from "@/app/AuthenticatedFlow";
 import AuthFlow from "@/app/AuthFlow";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginScreen from "@/app/screens/auth/LoginScreen";
+import SignupScreen from "@/app/screens/auth/SignupScreen";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -24,6 +27,8 @@ export default function RootLayout() {
                 return <AuthFlow />;
             case 'Post':
                 return <AuthenticatedFlow setFlow={setFlow} />;
+            default:
+                return null;
         }
     }
 
@@ -36,9 +41,18 @@ export default function RootLayout() {
             />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-visible`}>
-        <div className={"min-h-screen"}>
-            {handleFlows()}
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/login" element={<LoginScreen />} />
+                <Route path="/signup" element={<SignupScreen />} />
+                {/* You can add a default route or other routes here */}
+            </Routes>
+
+            {/* Fallback app rendering if not on /login or /signup */}
+            <div className="min-h-screen">
+                {handleFlows()}
+            </div>
+        </Router>
         </body>
         </html>
     );

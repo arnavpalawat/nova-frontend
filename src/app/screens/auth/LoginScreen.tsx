@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {JSX} from 'react';
+import {Link, NavLink} from "react-router";
 
-export default function LoginScreen() {
+
+export default function LoginScreen(): JSX.Element {
+
     return (
         <div className="min-h-lvh p-0 bg-cover bg-center bg-[url('../assets/images/auth_background.png')] relative">
-            <div className="bg-[#2F3438] p-8 rounded-2xl shadow-lg w-full max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="bg-[#2F3438] p-8 rounded-2xl shadow-lg w-full max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate__animated animate__fadeInUp duration-25 fast">
                 <h2 className="text-2xl font-bold mb-6 text-center text-[#FFF]">Login</h2>
                 <form className="space-y-4">
                     <div>
@@ -24,13 +27,16 @@ export default function LoginScreen() {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#1C1C2E] text-[#A6C8FF] py-2 rounded-xl transition duration-200"
+                        className="w-full bg-[#1C1C2E] text-[#A6C8FF] py-2 rounded-xl transition duration-200 hover:bg-[#2a2a3c]"
                     >
-                        Sign In
+                        Log In
                     </button>
                 </form>
                 <p className="mt-4 text-sm text-center text-[#8d8f93]">
-                    Don&#39;t have an account? <a href="#" className="text-[#A6C8FF] hover:underline">Sign up</a>
+                    Don&#39;t have an account?{' '}
+                    <NavLink to={"/signup"} className="text-[#A6C8FF] hover:underline">
+                        Sign up
+                    </NavLink>
                 </p>
             </div>
         </div>
