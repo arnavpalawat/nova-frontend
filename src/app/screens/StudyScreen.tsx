@@ -4,22 +4,64 @@ import AnswerOption from "@/app/components/study/QuestionAnswerButton";
 import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
 
-const StudyScreen: React.FC = () => {
-    const question = 'What is\nSEO?';
-    const answers = ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'];
 
+const questions: Question[] = [
+    {
+        question: 'What is\nSEO?',
+        answers: ['Search Engine Optimization', 'Social Email Outreach', 'Simple Element Order', 'Site External Operations'],
+        correctIndex: 0,
+        rationale: 'SEO stands for Search Engine Optimization, which improves site visibility on search engines.',
+        instructionalArea: 'IA 1',
+    },
+    {
+        question: 'What does HTML stand for?',
+        answers: ['Hyper Text Markup Language', 'Home Tool Markup Language', 'Hyperlinks and Text Markup Language', 'Highly Typed Modern Language'],
+        correctIndex: 0,
+        rationale: 'HTML stands for Hyper Text Markup Language, which structures web content.',
+        instructionalArea: 'IA 2',
+    },
+    {
+        question: 'What does HTML stand for?',
+        answers: ['Hyper Text Markup Language', 'Home Tool Markup Language', 'Hyperlinks and Text Markup Language', 'Highly Typed Modern Language'],
+        correctIndex: 0,
+        rationale: 'HTML stands for Hyper Text Markup Language, which structures web content.',
+        instructionalArea: 'IA 2',
+    },{
+        question: 'What does HTML stand for?',
+        answers: ['Hyper Text Markup Language', 'Home Tool Markup Language', 'Hyperlinks and Text Markup Language', 'Highly Typed Modern Language'],
+        correctIndex: 0,
+        rationale: 'HTML stands for Hyper Text Markup Language, which structures web content.',
+        instructionalArea: 'IA 2',
+    },{
+        question: 'What does HTML stand for?',
+        answers: ['Hyper Text Markup Language', 'Home Tool Markup Language', 'Hyperlinks and Text Markup Language', 'Highly Typed Modern Language'],
+        correctIndex: 0,
+        rationale: 'HTML stands for Hyper Text Markup Language, which structures web content.',
+        instructionalArea: 'IA 2',
+    },];
+
+const StudyScreen: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+
+    const currentQuestion = questions[currentIndex];
 
     const handleSubmit = () => {
         if (selectedAnswer) {
-            alert(`You selected: ${selectedAnswer}`);
+            // You could add feedback logic here (correct/wrong)
+            if (currentIndex < questions.length - 1) {
+                setCurrentIndex(currentIndex + 1);
+                setSelectedAnswer(null);
+            } else {
+                alert('You have completed all questions!');
+            }
         }
     };
 
     const colorSelector = (index: number) => {
         if (index % 3 === 0) return "1d1c2d";
-        else if (index % 2 === 0) return "555f89";
-        else return "a6c8ff";
+        else if (index % 2 === 0) return "1d1c2d";
+        else return "1d1c2d";
     };
 
     return (
@@ -27,7 +69,7 @@ const StudyScreen: React.FC = () => {
             {/* Progress Bar */}
             <div className="w-full px-5 mb-20">
                 <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
-                    <ProgressBar percentage={72} />
+                    <ProgressBar percentage={(currentIndex) / questions.length * 100} />
                 </div>
             </div>
 
@@ -35,14 +77,18 @@ const StudyScreen: React.FC = () => {
             <div className="flex flex-1 justify-around items-start px-20">
                 {/* Question Card */}
                 <div className="animate__animated animate__fadeInUp duration-25 fast">
-                    <QuestionCard color={colorSelector(0)} question={question} stackSize={3} />
+                    <QuestionCard
+                        color={colorSelector(currentIndex)}
+                        question={currentQuestion.question}
+                        stackSize={questions.length - currentIndex}
+                    />
                 </div>
 
                 {/* Answer Section */}
                 <div className="flex flex-col items-start px-20 animate__animated animate__fadeInUp duration-25 fast">
-                    <h1 className="text-3xl font-bold mb-6">Product-Service Management</h1>
+                    <h1 className="text-3xl font-bold mb-6">{currentQuestion.instructionalArea}</h1>
                     <div className="flex flex-col gap-4 mb-6 w-full">
-                        {answers.map((answer, idx) => (
+                        {currentQuestion.answers.map((answer, idx) => (
                             <AnswerOption
                                 key={idx}
                                 text={answer}
@@ -59,12 +105,12 @@ const StudyScreen: React.FC = () => {
                     <div className="w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                         {/* Front */}
                         <div className="absolute w-full h-full backface-hidden">
-                            <QuestionCard color={colorSelector(0)} question={"Answer Rationale"} stackSize={1} />
+                            <QuestionCard color={colorSelector(currentIndex)} question={"Answer Rationale"} stackSize={1} />
                         </div>
 
                         {/* Back */}
                         <div className="absolute w-full h-full rotate-y-180 backface-hidden">
-                            <QuestionCard color={colorSelector(0)} question={"Insert Rationale Here"} stackSize={1} />
+                            <QuestionCard color={colorSelector(currentIndex)} question={currentQuestion.rationale} stackSize={1} />
                         </div>
                     </div>
                 </div>
