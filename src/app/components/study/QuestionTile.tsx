@@ -10,7 +10,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, color, stackSize 
     const layers = Array.from({ length: stackSize });
 
     return (
-        <div className="relative w-100 h-150">
+        <div className="relative w-90 h-150">
             {/* Background Stack Layers */}
             {layers.map((_, i) => (
                 <div

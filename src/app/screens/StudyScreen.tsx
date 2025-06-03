@@ -13,56 +13,59 @@ const StudyScreen: React.FC = () => {
     const handleSubmit = () => {
         if (selectedAnswer) {
             alert(`You selected: ${selectedAnswer}`);
-            // submit to backend or handle result
         }
     };
 
     const colorSelector = (index: number) => {
-        if (index % 3 === 0) {
-            return "1d1c2d";
-        } else if (index % 2 === 0) {
-            return "555f89";
-        } else {
-            return "a6c8ff";
-        }
+        if (index % 3 === 0) return "1d1c2d";
+        else if (index % 2 === 0) return "555f89";
+        else return "a6c8ff";
     };
 
     return (
         <div className="min-h-screen bg-[#2F3438] w-full flex flex-col text-blue-100">
-            {/* Progress bar at the top */}
-            <div className="w-full px-5">
+            {/* Progress Bar */}
+            <div className="w-full px-5 mb-20">
                 <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
                     <ProgressBar percentage={72} />
-
                 </div>
             </div>
 
-            {/* Main content area, vertically centered */}
-            <div className="flex flex-1 justify-evenly w-full animate__animated animate__fadeInUp duration-5 fast">
-                <div className="flex flex-row gap-30 my-10 w-full px-10">
-                    {/* Left: Question Card */}
-                    <div className="flex-shrink-0">
-                        <QuestionCard color={colorSelector(0)} question={question} stackSize={3} />
-                    </div>
+            {/* Main Content */}
+            <div className="flex flex-1 justify-around items-start px-20">
+                {/* Question Card */}
+                <div className="animate__animated animate__fadeInUp duration-25 fast">
+                    <QuestionCard color={colorSelector(0)} question={question} stackSize={3} />
+                </div>
 
-                    {/* Right: Answer Section */}
-                    <div className="flex flex-col justify-start flex-grow">
-                        <h1 className="text-3xl font-bold mb-6">Product-Service Management</h1>
-                        <div className="flex flex-col gap-4 mb-6">
-                            {answers.map((answer, idx) => (
-                                <AnswerOption
-                                    key={idx}
-                                    text={answer}
-                                    isSelected={selectedAnswer === answer}
-                                    onClick={() => setSelectedAnswer(answer)}
-                                />
-                            ))}
-                        </div>
-                        <AnswerSubmit selectedAnswer={selectedAnswer} onSubmit={handleSubmit} />
+                {/* Answer Section */}
+                <div className="flex flex-col items-start px-20 animate__animated animate__fadeInUp duration-25 fast">
+                    <h1 className="text-3xl font-bold mb-6">Product-Service Management</h1>
+                    <div className="flex flex-col gap-4 mb-6 w-full">
+                        {answers.map((answer, idx) => (
+                            <AnswerOption
+                                key={idx}
+                                text={answer}
+                                isSelected={selectedAnswer === answer}
+                                onClick={() => setSelectedAnswer(answer)}
+                            />
+                        ))}
                     </div>
-                    {/* Left: Question Card */}
-                    <div className="flex-shrink-0 transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                        <QuestionCard color={colorSelector(0)} question={"Answer Rationale"} stackSize={3} />
+                    <AnswerSubmit selectedAnswer={selectedAnswer} onSubmit={handleSubmit} />
+                </div>
+
+                {/* Flip Card */}
+                <div className="group perspective w-[300px] h-[200px] relative animate__animated animate__fadeInUp duration-25 fast">
+                    <div className="w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        {/* Front */}
+                        <div className="absolute w-full h-full backface-hidden">
+                            <QuestionCard color={colorSelector(0)} question={"Answer Rationale"} stackSize={1} />
+                        </div>
+
+                        {/* Back */}
+                        <div className="absolute w-full h-full rotate-y-180 backface-hidden">
+                            <QuestionCard color={colorSelector(0)} question={"Insert Rationale Here"} stackSize={1} />
+                        </div>
                     </div>
                 </div>
             </div>
