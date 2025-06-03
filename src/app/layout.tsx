@@ -7,6 +7,8 @@ import AuthFlow from "@/app/AuthFlow";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginScreen from "@/app/screens/auth/LoginScreen";
 import SignupScreen from "@/app/screens/auth/SignupScreen";
+import StudyScreen from "@/app/screens/StudyScreen";
+import SettingsScreen from "@/app/screens/SettingsScreen";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -45,6 +47,8 @@ export default function RootLayout() {
             <Routes>
                 <Route path="/login" element={<LoginScreen />} />
                 <Route path="/signup" element={<SignupScreen />} />
+                <Route path="/study" element={<StudyScreen />} />
+                <Route path="/settings" element={<SettingsScreen setFlow={undefined} />} />
                 {/* You can add a default route or other routes here */}
             </Routes>
 

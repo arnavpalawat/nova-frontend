@@ -60,6 +60,10 @@ const StudyScreen: React.FC = () => {
                         </div>
                         <AnswerSubmit selectedAnswer={selectedAnswer} onSubmit={handleSubmit} />
                     </div>
+                    {/* Left: Question Card */}
+                    <div className="flex-shrink-0 transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        <QuestionCard color={colorSelector(0)} question={"Answer Rationale"} stackSize={3} />
+                    </div>
                 </div>
             </div>
         </div>
