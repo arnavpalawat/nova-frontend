@@ -6,6 +6,7 @@ import DashboardScreen from "@/app/screens/DashboardScreen";
 import ProfilePage from "@/app/screens/SettingsScreen";
 import BottomNav, { Tab } from "@/app/components/Footer";
 import Header from "@/app/components/Header";
+import StudyScreen from "@/app/screens/StudyScreen";
 
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -19,7 +20,7 @@ export default function AuthenticatedFlow({setFlow}) {
                 return (
                     <DashboardScreen />);
             case 'book':
-                return <DashboardScreen />;
+                return <StudyScreen />;
             case 'settings':
                 return <ProfilePage setFlow={setFlow} />;
         }

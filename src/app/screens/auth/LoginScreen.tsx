@@ -1,44 +1,24 @@
-import React, {JSX} from 'react';
-import {Link, NavLink} from "react-router";
-
+import React, { JSX } from 'react';
+import { NavLink } from 'react-router-dom';
+import AuthInput from "@/app/components/auth/AuthInput";
+import AuthContainer from "@/app/components/auth/AuthContainer";
+import AuthForm from "@/app/components/auth/AuthForm";
 
 export default function LoginScreen(): JSX.Element {
-
     return (
-        <div className="min-h-lvh p-0 bg-cover bg-center bg-[url('../assets/images/auth_background.png')] relative">
-            <div className="bg-[#2F3438] p-8 rounded-2xl shadow-lg w-full max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate__animated animate__fadeInUp duration-25 fast">
+        <AuthContainer>
+            <>
                 <h2 className="text-2xl font-bold mb-6 text-center text-[#FFF]">Login</h2>
-                <form className="space-y-4">
-                    <div>
-                        <label className="block mb-1 text-sm font-medium text-[#FFF]">Email</label>
-                        <input
-                            type="email"
-                            className="w-full px-4 py-2 text-[#FFF] bg-transparent border border-gray-500 rounded-xl focus:outline-none"
-                            placeholder="you@example.com"
-                        />
-                    </div>
-                    <div>
-                        <label className="block mb-1 text-sm font-medium text-[#FFF]">Password</label>
-                        <input
-                            type="password"
-                            className="w-full px-4 py-2 text-[#FFF] bg-transparent border border-gray-500 rounded-xl focus:outline-none"
-                            placeholder="••••••••"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-[#1C1C2E] text-[#A6C8FF] py-2 rounded-xl transition duration-200 hover:bg-[#2a2a3c]"
-                    >
-                        Log In
-                    </button>
-                </form>
+                <AuthForm>
+                    <AuthInput label="Email" type="email" placeholder="you@example.com" required />
+                    <AuthInput label="Password" type="password" placeholder="••••••••" required />
+                    <button type="submit" className="w-full bg-[#1C1C2E] text-[#A6C8FF] py-2 rounded-xl transition duration-200 hover:bg-[#2a2a3c]">Log In</button>
+                </AuthForm>
                 <p className="mt-4 text-sm text-center text-[#8d8f93]">
                     Don&#39;t have an account?{' '}
-                    <NavLink to={"/signup"} className="text-[#A6C8FF] hover:underline">
-                        Sign up
-                    </NavLink>
+                    <NavLink to="/signup" className="text-[#A6C8FF] hover:underline">Sign up</NavLink>
                 </p>
-            </div>
-        </div>
+            </>
+        </AuthContainer>
     );
 }
