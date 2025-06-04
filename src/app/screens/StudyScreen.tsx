@@ -3,6 +3,8 @@ import QuestionCard from "@/app/components/study/QuestionTile";
 import AnswerOption from "@/app/components/study/QuestionAnswerButton";
 import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
+import Header from "@/app/components/Header";
+import BottomNav from "@/app/components/Footer";
 
 
 const questions: Question[] = [
@@ -67,6 +69,8 @@ const StudyScreen: React.FC = () => {
     return (
         <div className="min-h-screen bg-[#2F3438] w-full flex flex-col text-blue-100">
             {/* Progress Bar */}
+            <Header />
+
             <div className="w-full px-5 mb-20">
                 <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
                     <ProgressBar percentage={(currentIndex) / questions.length * 100} />
@@ -115,6 +119,7 @@ const StudyScreen: React.FC = () => {
                     </div>
                 </div>
             </div>
+            <BottomNav selected={"book"} />
         </div>
     );
 };

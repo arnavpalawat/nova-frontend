@@ -6,11 +6,14 @@ import CalendarButton from "@/app/components/CalendarButton";
 
 import Announcement from "@/app/components/Announcement";
 import Dashboard from "@/app/components/Dashboard";
+import Header from "@/app/components/Header";
+import BottomNav from "@/app/components/Footer";
 
 const DashboardScreen = () => {
     return (
         <div className="max-h-screen min-h-lvh bg-[#2F3438] flex flex-col items-start justify-start w-full">
             {/* Top section with horizontal padding */}
+            <Header />
             <div className="w-full px-5">
                 <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
                     <ProgressBar percentage={72} />
@@ -21,11 +24,8 @@ const DashboardScreen = () => {
                     <CalendarButton />
                 </div>
             </div>
-
             <Dashboard/>
-
-            {/* Bottom navigation */}
-
+            <BottomNav selected={"home"} />
         </div>
     );
 };

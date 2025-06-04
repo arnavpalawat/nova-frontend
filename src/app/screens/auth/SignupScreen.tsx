@@ -25,7 +25,7 @@ export default function SignupScreen(): JSX.Element {
         try {
             setError('');
             await signUp(email, password);
-            navigate('/');
+            navigate('/login');
         } catch (err) {
             alert(err);
         }
