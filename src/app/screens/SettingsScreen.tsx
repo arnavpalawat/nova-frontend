@@ -7,8 +7,27 @@ import ProfileText from "@/app/components/profile/ProfileText";
 import ProfileCircle from "@/app/components/profile/ProfileCircle";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
+import {auth} from "@/app/firebase";
+import {signOut, deleteUser} from "firebase/auth";
+import {useUserAuth} from "@/app/AuthContext";
 
 const ProfilePage = () => {
+    const { user } = useUserAuth();
+
+    async function handleSignOut() {
+        await signOut(auth).then(() => {navigate("/login")});
+    }
+    async function handleDelete() {
+        if (user) {
+            await deleteUser(user).then(() => {
+                navigate("/login")
+            });
+        } else {
+            alert("User does not exist!");
+        }
+    }
+
+
     const navigate = useNavigate();
     return (
 
@@ -29,12 +48,12 @@ const ProfilePage = () => {
                 </div>
                 <div className="my-10"></div>
                 <div className="animate__animated animate__fadeInUp">
-                    <ProfileButton label="Sign Out" variant="signout" onClick={navigate("/login")} />
+                    <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
                 </div>
                 <div className="my-5"></div>
 
                 <div className="animate__animated animate__fadeInUp">
-                    <ProfileButton label="Delete your Account" variant="danger" onClick={null} />
+                    <ProfileButton label="Delete your Account" variant="danger" onClick={handleDelete} />
                 </div>
             </div>
 

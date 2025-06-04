@@ -17,7 +17,7 @@ export default function LoginScreen(): JSX.Element {
         try {
             setError('');
             await logIn(email, password);
-            navigate('/'); // or wherever you want to send the user after login
+            navigate('/study'); // or wherever you want to send the user after login
         } catch (err: any) {
             setError(err.message || 'Login failed');
         }
