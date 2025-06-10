@@ -37,7 +37,7 @@ export const updateUserExamName = async (uid: number, examName: string) => {
     return fetchData(`/${uid}/exam_name`, 'POST', { exam_name: examName });
 };
 
-export const createUser = async (uid: number, name: string, examName: string = '') => {
+export const createUser = async (uid: string, name: string, examName: string = '') => {
     return fetchData('/create_user', 'POST', { uid, name, exam_name: examName });
 };
 
