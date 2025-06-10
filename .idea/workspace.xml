@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/ApiService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ApiService.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/questions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/questions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/study/QuestionTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/study/QuestionTile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/EventSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/EventSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

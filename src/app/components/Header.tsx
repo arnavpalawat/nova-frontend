@@ -2,15 +2,16 @@ import React from "react";
 import CategoryButton from "@/app/components/EventSelector";
 import Logo from "./Logo";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    event?: string; // <-- Adjust this to match the actual event type
+}
+
+const Header: React.FC<HeaderProps> = ({ event }) => {
     return (
         <div className="flex items-center justify-between w-full bg-[#2F3438] px-5">
-            {/* Left section (75%) */}
             <div className="w-3/4">
-                <CategoryButton />
+                <CategoryButton event={event} />
             </div>
-
-            {/* Logo */}
             <div className="w-1/4 flex justify-end">
                 <Logo />
             </div>

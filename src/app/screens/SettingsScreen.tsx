@@ -8,19 +8,35 @@ import BottomNav from "@/app/components/Footer";
 import { auth } from "@/app/firebase";
 import { signOut, deleteUser } from "firebase/auth";
 import { useUserAuth } from "@/app/AuthContext";
-import { getUserName } from "@/app/ApiService";
+import {getUserExamName, getUserName} from "@/app/ApiService";
 
 const ProfilePage = () => {
     const { user } = useUserAuth();
     const navigate = useNavigate();
     const [name, setName] = useState("Loading...");
+    const [event, setEvent] = useState<string>("Loading...");
 
+    useEffect(() => {
+        const fetchEvent = async () => {
+            if (user?.uid) {
+                try {
+                    const fetchedData = await getUserExamName(user.uid);
+                    setEvent(fetchedData.exam_name || "No Event Found");
+                } catch (error) {
+                    console.error("Failed to fetch user name:", error);
+                    setEvent("Sign In to Start Studying!");
+                }
+            }
+        };
+
+        fetchEvent();
+    }, [user]);
     useEffect(() => {
         const fetchName = async () => {
             if (user?.uid) {
                 try {
                     const fetchedData = await getUserName(user.uid);
-                    setName(fetchedData?.name || "Unnamed User"); // ✅ only use the name string
+                    setName(fetchedData?.name || "Unnamed User");
                 } catch (error) {
                     console.error("Failed to fetch user name:", error);
                     setName("Unnamed User");
@@ -56,7 +72,7 @@ const ProfilePage = () => {
 
     return (
         <div className="bg-[#2F3438] min-h-screen space-y-4 w-screen">
-            <Header />
+            <Header event={event} />
             <div className={"animate__animated animate__fadeInUp"}>
                 <ProfileCircle />
             </div>

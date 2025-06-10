@@ -5,7 +5,8 @@ import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
-import { getExamByName } from "@/app/ApiService"; // import your API function
+import {getExamByName, getUserExamName} from "@/app/ApiService";
+import {useUserAuth} from "@/app/AuthContext"; // import your API function
 
 // Define the shape of the raw data coming from the API
 interface RawQuestion {
@@ -36,7 +37,24 @@ const StudyScreen: React.FC = () => {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { user } = useUserAuth();
+    const [event, setEvent] = useState<string>("Loading...");
 
+    useEffect(() => {
+        const fetchEvent = async () => {
+            if (user?.uid) {
+                try {
+                    const fetchedData = await getUserExamName(user.uid);
+                    setEvent(fetchedData.exam_name || "No Event Found");
+                } catch (error) {
+                    console.error("Failed to fetch user name:", error);
+                    setEvent("Sign In to Start Studying!");
+                }
+            }
+        };
+
+        fetchEvent();
+    }, [user]);
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
@@ -108,7 +126,7 @@ const StudyScreen: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-[#2F3438] w-full flex flex-col text-blue-100">
-            <Header />
+            <Header event={event}/>
 
             <div className="w-full px-5 mb-20">
                 <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
