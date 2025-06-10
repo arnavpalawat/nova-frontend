@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/components/profile/ProfileCircle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/profile/ProfileText.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/profile/SettingsButtons.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/ApiService.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Announcement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Announcement.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/DonutChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/DonutChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/questions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/questions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/study/QuestionTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/study/QuestionTile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,5 +111,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="OLD CODE" />
+    <option name="LAST_COMMIT_MESSAGE" value="OLD CODE" />
   </component>
 </project>
