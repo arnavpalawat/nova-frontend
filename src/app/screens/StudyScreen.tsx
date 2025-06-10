@@ -5,14 +5,29 @@ import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
-import { getQuestionsForIa } from "@/app/ApiService"; // import your API function
+import { getExamByName } from "@/app/ApiService"; // import your API function
 
+// Define the shape of the raw data coming from the API
+interface RawQuestion {
+    answer_explanation: string;
+    choices: string[];
+    correct_choice_id: number;
+    ia_id: number;
+    ia_name: string;
+    question: string;
+    question_id: number;
+}
+
+// Define the shape of a processed Question for your component's state
 type Question = {
     question: string;
     answers: string[];
     correctIndex: number;
     rationale: string;
-    instructionalArea: string;
+    instructionalArea: { // This now matches the object structure
+        id: number;
+        name: string;
+    };
 };
 
 const StudyScreen: React.FC = () => {
@@ -26,18 +41,23 @@ const StudyScreen: React.FC = () => {
         const fetchQuestions = async () => {
             try {
                 setLoading(true);
-                const rawData = await getQuestionsForIa(1);
+                // Assuming getExamByName returns an array of RawQuestion
+                const rawData: RawQuestion[] = await getExamByName("Entrepreneurship");
 
                 // Map raw API data to your Question type
-                const mappedQuestions: Question[] = rawData.map((q: any) => {
-                    const answers = q.choices.map((c: any) => c.choice);
-                    const correctIndex = 1+q.choices.findIndex((c: any) => c.id === q.correct_choice_id);
+                const mappedQuestions: Question[] = rawData.map((q: RawQuestion) => {
+                    const answers = q.choices;
+                    const correctIndex = 1+ q.correct_choice_id; // This is now 1-based index directly
+
                     return {
                         question: q.question,
                         answers,
                         correctIndex,
                         rationale: q.answer_explanation,
-                        instructionalArea: q.instructionalArea, // or get dynamically if available
+                        instructionalArea: {
+                            id: q.ia_id,
+                            name: q.ia_name,
+                        },
                     };
                 });
 
@@ -60,8 +80,9 @@ const StudyScreen: React.FC = () => {
     const currentQuestion = questions[currentIndex];
 
     const handleSubmit = () => {
-        if (selectedAnswer) {
-            const isCorrect = selectedAnswer === currentQuestion.answers[currentQuestion.correctIndex];
+        if (selectedAnswer !== null) { // Check for null explicitly
+            // Remember correctIndex is 1-based, so subtract 1 for array access
+            const isCorrect = selectedAnswer === currentQuestion.answers[currentQuestion.correctIndex - 1];
             if (isCorrect) {
                 alert('Correct!');
                 // Move to the next question if correct
@@ -73,11 +94,14 @@ const StudyScreen: React.FC = () => {
             } else {
                 alert('Wrong!');
                 // Add the current question to the end of the list if incorrect
+                // This ensures the question is reviewed again later
+                // This ensures the question is reviewed again later
                 setQuestions((prevQuestions) => [...prevQuestions, currentQuestion]);
-                // Stay on the current question (currentIndex does not change)
-                // The progress bar will not advance because currentIndex isn't incremented
             }
             setSelectedAnswer(null); // Clear selected answer for the next question
+        } else {
+            // Optional: Alert the user if no answer is selected before submitting
+            alert("Please select an answer before submitting.");
         }
     };
 
@@ -89,21 +113,20 @@ const StudyScreen: React.FC = () => {
             <div className="w-full px-5 mb-20">
                 <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
                     {/* Progress is now calculated based on the initial number of questions */}
-                    <ProgressBar percentage={(currentIndex / questions.length) * 100} />
+                    <ProgressBar percentage={parseInt(String((0.005 + currentIndex / questions.length) * 100))} />
                 </div>
             </div>
 
             <div className="flex flex-1 justify-around items-start px-20">
                 <div className="animate__animated animate__fadeInUp duration-25 fast">
                     <QuestionCard
-                        color={"1d1c2d"}
                         question={currentQuestion.question}
-                        stackSize={questions.length - currentIndex}
                     />
                 </div>
 
                 <div className="flex flex-col items-start px-20 animate__animated animate__fadeInUp duration-25 fast">
-                    <h1 className="text-3xl font-bold mb-6">{currentQuestion.instructionalArea}</h1>
+                    {/* Access the name property of instructionalArea */}
+                    <h1 className="text-3xl font-bold mb-6">{currentQuestion.instructionalArea.name}</h1>
                     <div className="flex flex-col gap-4 mb-6 w-full">
                         {currentQuestion.answers.map((answer, idx) => (
                             <AnswerOption
@@ -120,10 +143,13 @@ const StudyScreen: React.FC = () => {
                 <div className="group perspective w-[300px] h-[200px] relative animate__animated animate__fadeInUp duration-25 fast">
                     <div className="w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                         <div className="absolute w-full h-full backface-hidden">
-                            <QuestionCard color={"1d1c2d"} question={"Answer Rationale"} stackSize={1} />
+                            <QuestionCard question={"Answer Rationale"}  />
                         </div>
                         <div className="absolute w-full h-full rotate-y-180 backface-hidden">
-                            <QuestionCard color={"1d1c2d"} question={currentQuestion.rationale.length > 300 ? (currentQuestion.rationale.substring(0, 300) + "...") : currentQuestion.rationale} stackSize={1} />
+                            <QuestionCard
+                                question={currentQuestion.rationale.length > 300 ? (currentQuestion.rationale.substring(0, 300) + "...") : currentQuestion.rationale}
+
+                            />
                         </div>
                     </div>
                 </div>

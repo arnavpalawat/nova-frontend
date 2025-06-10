@@ -1,25 +1,20 @@
-class Question {
+interface RawQuestion {
+    answer_explanation: string;
+    choices: string[]; // This will now be an array of strings directly
+    correct_choice_id: number;
+    ia_id: number;
+    ia_name: string;
+    question: string;
+    question_id: number;
+}
+
+interface Question {
     question: string;
     answers: string[];
     correctIndex: number;
     rationale: string;
-    instructionalArea: string;
-    choices: string[]
-
-    constructor(
-        question: string,
-        answers: string[],
-        correctIndex: number,
-        rationale: string,
-        instructionalArea: string,
-        choices: string[]
-    ) {
-        this.question = question;
-        this.answers = answers;
-        this.correctIndex = correctIndex;
-        this.rationale = rationale;
-        this.instructionalArea = instructionalArea;
-        this.choices = choices;
-    }
-
+    instructionalArea: {
+        id: number;
+        name: string;
+    };
 }
