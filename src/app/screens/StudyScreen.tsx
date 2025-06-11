@@ -5,7 +5,7 @@ import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
-import { getExamByName, getUserExamName } from "@/app/ApiService";
+import {getExamByName, getUserExamName, updateFlashcards} from "@/app/ApiService";
 import { useUserAuth } from "@/app/AuthContext";
 
 // Raw API shape
@@ -107,6 +107,10 @@ const StudyScreen: React.FC = () => {
                     } else {
                         setIsComplete(true);
                     }
+                    updateFlashcards(
+                        user?.uid ?? "",
+                        `${new Date().toLocaleString('en-US', { weekday: 'long' })} | ${new Date().toLocaleString('en-US', { month: 'long' })} | ${new Date().getDate()} | ${new Date().getFullYear()}`
+                    )
                 } else {
                     setQuestions((prev) => [...prev, currentQuestion]);
                 }

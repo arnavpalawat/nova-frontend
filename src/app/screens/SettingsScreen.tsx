@@ -80,20 +80,11 @@ const ProfilePage = () => {
                 <ProfileText name={name} role="Student" />
             </div>
             <div className="p-6">
-                <div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp">
-                    <ProfileButton label="Snap Raise" onClick={() => {}} />
-                    <ProfileButton label="Change Events" onClick={() => {}} />
-                </div>
-                <div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp">
-                    <ProfileButton label="Contact Advisors" onClick={() => {}} />
-                    <ProfileButton label="Deca MA-03" onClick={() => {}} />
-                </div>
-                <div className="my-10" />
-                <div className="animate__animated animate__fadeInUp">
+                {/*<div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp">*/}
+                {/*    <ProfileButton label="Change Events" onClick={() => {}} />*/}
+                {/*</div>*/}
+                <div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp items-center">
                     <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
-                </div>
-                <div className="my-5" />
-                <div className="animate__animated animate__fadeInUp">
                     <ProfileButton label="Delete your Account" variant="danger" onClick={handleDelete} />
                 </div>
             </div>
