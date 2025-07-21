@@ -1,7 +1,9 @@
+// BottomNav.tsx
 'use client';
 
 import { Home, Book, Settings } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useNav } from '@/app/contexts/NavContext';
 
 type Tab = 'home' | 'book' | 'settings';
 
@@ -11,6 +13,7 @@ interface BottomNavProps {
 
 const BottomNav = ({ selected }: BottomNavProps) => {
     const navigate = useNavigate();
+    const { hasUID } = useNav();
 
     return (
         <div className="fixed bottom-0 w-full flex justify-center bg-[#2F3438]">
@@ -25,18 +28,23 @@ const BottomNav = ({ selected }: BottomNavProps) => {
                     >
                         <Home className="text-white w-10 h-10" />
                     </button>
-                    <button
-                        onClick={() => navigate('/study')}
-                        className={`p-4 rounded-full ${selected === 'book' ? 'bg-[#6b6ba3]' : ''}`}
-                    >
-                        <Book className="text-white w-10 h-10" />
-                    </button>
-                    <button
-                        onClick={() => navigate('/settings')}
-                        className={`p-4 rounded-full ${selected === 'settings' ? 'bg-[#6b6ba3]' : ''}`}
-                    >
-                        <Settings className="text-white w-10 h-10" />
-                    </button>
+
+                    {hasUID && (
+                        <>
+                            <button
+                                onClick={() => navigate('/study')}
+                                className={`p-4 rounded-full ${selected === 'book' ? 'bg-[#6b6ba3]' : ''}`}
+                            >
+                                <Book className="text-white w-10 h-10" />
+                            </button>
+                            <button
+                                onClick={() => navigate('/settings')}
+                                className={`p-4 rounded-full ${selected === 'settings' ? 'bg-[#6b6ba3]' : ''}`}
+                            >
+                                <Settings className="text-white w-10 h-10" />
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

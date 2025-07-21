@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { useUserAuth } from "@/app/AuthContext";
+import { useUserAuth } from "@/app/contexts/AuthContext";
 import { getUserExamName } from "@/app/ApiService";
 
 interface EventContextType {

@@ -6,8 +6,8 @@ import ProgressBar from "@/app/components/ProgressBar";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
 import {getExamByName, updateFlashcards} from "@/app/ApiService";
-import { useUserAuth } from "@/app/AuthContext";
-import { useEvent } from "@/app/components/auth/EventProvider";
+import { useUserAuth } from "@/app/contexts/AuthContext";
+import { useEvent } from "@/app/contexts/EventContext";
 
 // Raw API shape
 interface RawQuestion {

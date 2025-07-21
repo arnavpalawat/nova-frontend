@@ -9,10 +9,10 @@ import SignupScreen from "@/app/screens/auth/SignupScreen";
 import DashboardScreen from "@/app/screens/DashboardScreen";
 import StudyScreen from "@/app/screens/StudyScreen";
 import SettingsScreen from "@/app/screens/SettingsScreen";
-import ProfilePageWrapper from "@/app/screens/ProfilePageWrapper"; // wrapper for redirect
-
-import { UserAuthContextProvider } from "@/app/AuthContext";
-import { EventProvider } from "./components/auth/EventProvider";
+import ProfilePageWrapper from "@/app/screens/ProfilePageWrapper";
+import { UserAuthContextProvider } from "@/app/contexts/AuthContext";
+import { EventProvider } from "@/app/contexts/EventContext";
+import {NavProvider} from "@/app/contexts/NavContext";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -35,6 +35,7 @@ export default function RootLayout() {
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-visible`}>
         <UserAuthContextProvider>
+            <NavProvider>
             <EventProvider>
             <Router>
                 <Routes>
@@ -47,6 +48,7 @@ export default function RootLayout() {
                 </Routes>
             </Router>
             </EventProvider>
+            </NavProvider>
         </UserAuthContextProvider>
         </body>
         </html>

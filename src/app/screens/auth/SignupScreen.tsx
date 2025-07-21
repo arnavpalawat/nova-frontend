@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthInput from "@/app/components/auth/AuthInput";
 import AuthForm from "@/app/components/auth/AuthForm";
 import AuthContainer from "@/app/components/auth/AuthContainer";
-import { useUserAuth } from "@/app/AuthContext";
+import { useUserAuth } from "@/app/contexts/AuthContext";
 import {createUser} from "@/app/ApiService";
 
 export default function SignupScreen(): JSX.Element {

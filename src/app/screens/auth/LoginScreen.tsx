@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import AuthInput from "@/app/components/auth/AuthInput";
 import AuthContainer from "@/app/components/auth/AuthContainer";
 import AuthForm from "@/app/components/auth/AuthForm";
-import { useUserAuth } from "@/app/AuthContext";
+import { useUserAuth } from "@/app/contexts/AuthContext";
 
 export default function LoginScreen(): JSX.Element {
     const [email, setEmail] = useState('');

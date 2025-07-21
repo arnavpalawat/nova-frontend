@@ -7,9 +7,9 @@ import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
 import { auth } from "@/app/firebase";
 import { signOut, deleteUser } from "firebase/auth";
-import { useUserAuth } from "@/app/AuthContext";
+import { useUserAuth } from "@/app/contexts/AuthContext";
 import { getUserName } from "@/app/ApiService";
-import { useEvent } from "@/app/components/auth/EventProvider";
+import { useEvent } from "@/app/contexts/EventContext";
 
 const ProfilePage = () => {
     const { user } = useUserAuth();

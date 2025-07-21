@@ -5,7 +5,7 @@ import Announcement from "@/app/components/Announcement";
 import Dashboard from "@/app/components/Dashboard";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
-import { useEvent } from "@/app/components/auth/EventProvider";
+import { useEvent } from "@/app/contexts/EventContext";
 
 const DashboardScreen: React.FC = () => {
     const { event } = useEvent();
