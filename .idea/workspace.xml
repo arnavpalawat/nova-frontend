@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/components/ui/EventSelectorDropdown.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/study/AnswerSubmitButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/study/AnswerSubmitButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/study/QuestionAnswerButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/study/QuestionAnswerButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/study/QuestionTile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/study/QuestionTile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/ui/EventSelectorDropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ui/EventSelectorDropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +111,7 @@
       <workItem from="1750020117522" duration="7291000" />
       <workItem from="1751819557702" duration="5000" />
       <workItem from="1753102219629" duration="3219000" />
-      <workItem from="1753105814003" duration="4545000" />
+      <workItem from="1753105814003" duration="6133000" />
     </task>
     <servers />
   </component>

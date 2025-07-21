@@ -34,7 +34,7 @@ type Question = {
 
 const Spinner = () => (
     <div className="flex justify-center items-center h-40 w-full">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-b-4 border-white" />
+        <div className="animate-spin rounded-full h-12 w-12 border-4 dark:border-white border-gray-900 border-t-transparent transition-all duration-200" />
     </div>
 );
 
@@ -45,7 +45,7 @@ const StudyScreen: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { user } = useUserAuth();
-    const { event } = useEvent(); // Use the event from context
+    const { event } = useEvent();
     const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
     const [isComplete, setIsComplete] = useState(false);
 
@@ -104,106 +104,124 @@ const StudyScreen: React.FC = () => {
         }
     };
 
-    if (error)
-        return <div className="text-center mt-20 text-red-500">{error}</div>;
-    if (questions.length === 0 && !loading)
-        return <div className="text-center mt-20 text-white">No questions available.</div>;
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 from-gray-100 to-slate-200 flex flex-col w-full overflow-hidden">
+                <Header event={event} />
+                <div className="flex-1 flex items-center justify-center px-4">
+                    <div className="dark:bg-gray-800/30 bg-gray-200/80 backdrop-blur-md rounded-2xl shadow-lg border dark:border-gray-700/30 border-gray-300/50 p-8">
+                        <Spinner />
+                        <p className="text-center dark:text-white text-gray-900 mt-4 font-['SF_Pro_Text']">Loading questions...</p>
+                    </div>
+                </div>
+                <BottomNav selected="book" />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 from-gray-100 to-slate-200 flex flex-col w-full overflow-hidden">
+                <Header event={event} />
+                <div className="flex-1 flex items-center justify-center px-4">
+                    <div className="dark:bg-gray-800/30 bg-gray-200/80 backdrop-blur-md rounded-2xl shadow-lg border dark:border-gray-700/30 border-gray-300/50 p-8 text-center">
+                        <h2 className="text-xl font-semibold dark:text-white text-gray-900 mb-4 font-['SF_Pro_Text']">Error Loading Questions</h2>
+                        <p className="dark:text-gray-300 text-gray-700 font-['SF_Pro_Text']">{error}</p>
+                    </div>
+                </div>
+                <BottomNav selected="book" />
+            </div>
+        );
+    }
 
     return (
-        <div className="min-h-screen bg-[#2F3438] w-full flex flex-col text-blue-100 relative">
+        <div className="min-h-screen bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 from-gray-100 to-slate-200 flex flex-col w-full overflow-hidden">
             <Header event={event} />
 
-            <div className="w-full px-5 mb-20">
-                <div className="w-3/4 animate__animated animate__fadeInUp duration-25 fast">
-                    <ProgressBar
-                        percentage={parseInt(
-                            String((0.005 + currentIndex / questions.length) * 100)
-                        )}
-                    />
+            <div className="flex-1 p-4 overflow-hidden">
+                {/* Progress Section - Compact Top */}
+                <div className="dark:bg-gray-800/30 bg-gray-200/80 backdrop-blur-md rounded-2xl shadow-lg border dark:border-gray-700/30 border-gray-300/50 p-3 mb-4">
+                    <ProgressBar percentage={Math.round(((currentIndex + 1) / questions.length) * 100)} />
                 </div>
-            </div>
 
-            <div className="flex flex-1 justify-around items-start px-20">
-                {loading ? (
-                    <Spinner />
-                ) : (
-                    <>
-                        <div className="animate__animated animate__fadeInUp duration-25 fast">
-                            <QuestionCard question={currentQuestion.question} />
-                        </div>
-
-                        <div className="flex flex-col items-start px-20 animate__animated animate__fadeInUp duration-25 fast">
-                            <h1 className="text-3xl font-bold mb-6">
-                                {currentQuestion.instructionalArea.name}
-                            </h1>
-                            <div className="flex flex-col gap-4 mb-6 w-full">
-                                {currentQuestion.answers.map((answer, idx) => {
-                                    const isCorrect =
-                                        feedback === 'correct' &&
-                                        answer === currentQuestion.answers[currentQuestion.correctIndex - 1];
-                                    const isWrong =
-                                        feedback === 'wrong' && selectedAnswer === answer &&
-                                        answer !== currentQuestion.answers[currentQuestion.correctIndex - 1];
-                                    return (
-                                        <AnswerOption
-                                            key={idx}
-                                            text={answer}
-                                            isSelected={selectedAnswer === answer}
-                                            isCorrect={isCorrect}
-                                            isWrong={isWrong}
-                                            onClick={() => setSelectedAnswer(answer)}
-                                        />
-                                    );
-                                })}
+                {/* Main Content - Two Column Layout */}
+                {currentQuestion && (
+                    <div className="flex gap-6 h-full">
+                        {/* Left Column - Question Card (Fixed Size) */}
+                        <div className="flex-1 flex flex-col items-center justify-start">
+                            <div className={`  w-full max-w-2xl h-96 backdrop-blur-md rounded-2xl shadow-lg border p-8 flex flex-col justify-center transition-all duration-300 ${
+                                feedback === 'wrong' 
+                                    ? 'bg-red-500/20 border-red-400/50 shadow-red-500/20' 
+                                    : feedback === 'correct'
+                                    ? 'bg-green-500/20 border-green-400/50 shadow-green-500/20'
+                                    : 'dark:bg-gray-800/30 bg-gray-200/80 dark:border-gray-700/30 border-gray-300/50'
+                            }`}>
+                                <QuestionCard
+                                    question={currentQuestion.question}
+                                    instructionalArea={currentQuestion.instructionalArea.name}
+                                />
                             </div>
-                            <AnswerSubmit selectedAnswer={selectedAnswer} onSubmit={handleSubmit} />
-                            {feedback && (
-                                <div
-                                    className={`mt-4 text-xl font-semibold transition-all duration-500 ${
-                                        feedback === 'correct' ? 'text-green-400' : 'text-red-400'
-                                    }`}
-                                >
-                                    {feedback === 'correct' ? '✅ Correct!' : '❌ Incorrect!'}
-                                </div>
-                            )}
                         </div>
 
-                        <div className="group perspective w-[300px] h-[200px] relative animate__animated animate__fadeInUp duration-25 fast">
-                            <div className="w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                                <div className="absolute w-full h-full backface-hidden">
-                                    <QuestionCard question={"Answer Rationale"} />
+                        {/* Right Column - Answer Options */}
+                        <div className="flex-1 flex flex-col">
+                            <div className="dark:bg-gray-800/30 bg-gray-200/80 backdrop-blur-md rounded-2xl shadow-lg border dark:border-gray-700/30 border-gray-300/50 p-6 flex-1 flex flex-col">
+                                <h3 className="text-lg font-semibold dark:text-white text-gray-900 mb-4 font-['SF_Pro_Text']">Answer Options</h3>
+
+                                <div className="flex-1 space-y-3 mb-6">
+                                    {questions[currentIndex].answers.map((answer, index) => (
+                                        <AnswerOption
+                                            key={index}
+                                            answer={answer}
+                                            isSelected={selectedAnswer === answer}
+                                            onClick={() => setSelectedAnswer(answer)}
+                                            isCorrect={feedback === 'correct' && selectedAnswer === answer}
+                                            isWrong={feedback === 'wrong' && selectedAnswer === answer}
+                                        />
+                                    ))}
                                 </div>
-                                <div className="absolute w-full h-full rotate-y-180 backface-hidden">
-                                    <QuestionCard
-                                        question={
-                                            currentQuestion.rationale.length > 300
-                                                ? currentQuestion.rationale.substring(0, 300) + "..."
-                                                : currentQuestion.rationale
-                                        }
+
+                                {/* Explanation Section - Under Answer Options */}
+                                {feedback && questions[currentIndex] && (
+                                    <div className="mb-6 p-4 dark:bg-gray-700/30 bg-gray-300/50 rounded-2xl border dark:border-gray-600/30 border-gray-400/40 transition-all duration-200">
+                                        <p className="dark:text-white text-gray-900 font-medium mb-2 font-['SF_Pro_Text']">Explanation:</p>
+                                        <p className="dark:text-gray-300 text-gray-700 font-['SF_Pro_Text']">{questions[currentIndex].rationale}</p>
+                                    </div>
+                                )}
+
+                                <div className="mt-auto pt-4 border-t dark:border-gray-700/30 border-gray-300/50">
+                                    <AnswerSubmit
+                                        selectedAnswer={selectedAnswer}
+                                        correctAnswer={questions[currentIndex]?.answers[questions[currentIndex]?.correctIndex - 1] || ""}
+                                        onSubmit={handleSubmit}
                                     />
                                 </div>
                             </div>
                         </div>
-                    </>
+                    </div>
+                )}
+
+                {/* Completion Screen */}
+                {isComplete && (
+                    <div className="flex items-center justify-center h-full">
+                        <div className="dark:bg-gray-800/30 bg-gray-200/80 backdrop-blur-md rounded-2xl shadow-lg border dark:border-gray-700/30 border-gray-300/50 p-8 text-center max-w-md">
+                            <div className="mb-6">
+                                <div className="text-6xl mb-4">🎉</div>
+                                <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-2 font-['SF_Pro_Text']">Study Session Complete!</h2>
+                                <p className="dark:text-gray-300 text-gray-700 font-['SF_Pro_Text']">Great job! You've completed all the questions in this session.</p>
+                            </div>
+                            <button
+                                onClick={() => window.location.reload()}
+                                className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-2xl transition-all duration-200 font-medium font-['SF_Pro_Text'] shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                            >
+                                Start New Session
+                            </button>
+                        </div>
+                    </div>
                 )}
             </div>
 
-            <BottomNav selected={"book"} />
-
-            {isComplete && (
-                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-                    <div className="bg-white p-10 rounded-xl text-center text-black w-96">
-                        <h2 className="text-2xl font-bold mb-4">🎉 Quiz Completed!</h2>
-                        <p className="mb-6">Great job! You've completed all the questions.</p>
-                        <button
-                            className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition"
-                            onClick={() => window.location.reload()}
-                        >
-                            Restart
-                        </button>
-                    </div>
-                </div>
-            )}
+            <BottomNav selected="book" />
         </div>
     );
 };

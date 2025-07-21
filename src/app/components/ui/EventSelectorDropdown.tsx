@@ -28,32 +28,29 @@ const EventSelectorDropdown: React.FC<EventSelectorDropdownProps> = ({
   };
 
   return (
-    <>
-      {/* Modal backdrop when dropdown is open */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-[100]"
-          onClick={() => setIsOpen(false)}
+    <div className="relative z-50">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-3 rounded-xl dark:bg-gray-800/50 bg-gray-300/50 border dark:border-gray-700/50 border-gray-400/50 transition-all duration-200"
+      >
+        <span className="dark:text-gray-200 text-gray-800 font-['SF_Pro_Text']">
+          {selectedEvent}
+        </span>
+        <ChevronDown
+          className={`w-4 h-4 dark:text-gray-400 text-gray-600 transition-transform duration-200 ${
+            isOpen ? 'transform rotate-180' : ''
+          }`}
         />
-      )}
+      </button>
 
-      <div className="relative">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-full flex items-center justify-between p-3 rounded-xl dark:bg-gray-800/50 bg-gray-300/50 border dark:border-gray-700/50 border-gray-400/50 transition-all duration-200"
-        >
-          <span className="dark:text-gray-200 text-gray-800 font-['SF_Pro_Text']">
-            {selectedEvent}
-          </span>
-          <ChevronDown
-            className={`w-4 h-4 dark:text-gray-400 text-gray-600 transition-transform duration-200 ${
-              isOpen ? 'transform rotate-180' : ''
-            }`}
+      {isOpen && (
+        <>
+          {/* Overlay to close dropdown when clicking outside */}
+          <div
+            className="fixed inset-0 z-[9998]"
+            onClick={() => setIsOpen(false)}
           />
-        </button>
-
-        {isOpen && (
-          <div className="fixed left-4 right-4 mt-1 dark:bg-gray-800 bg-gray-200 rounded-xl border dark:border-gray-700/50 border-gray-400/50 shadow-xl z-[101] overflow-hidden max-h-60 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1 dark:bg-gray-800 bg-gray-200 rounded-xl border dark:border-gray-700/50 border-gray-400/50 shadow-xl z-[9999] overflow-hidden max-h-60 overflow-y-auto">
             {events.map((event) => (
               <button
                 key={event}
@@ -68,9 +65,9 @@ const EventSelectorDropdown: React.FC<EventSelectorDropdownProps> = ({
               </button>
             ))}
           </div>
-        )}
-      </div>
-    </>
+        </>
+      )}
+    </div>
   );
 };
 

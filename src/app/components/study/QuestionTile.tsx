@@ -2,19 +2,23 @@ import React from 'react';
 
 type QuestionCardProps = {
     question: string;
+    instructionalArea: string;
 };
 
-const QuestionCard: React.FC<QuestionCardProps> = ({ question}) => {
+const QuestionCard: React.FC<QuestionCardProps> = ({ question, instructionalArea }) => {
 
     return (
-        <div className="relative w-90 h-150">
+        <div className="w-full h-full flex flex-col items-center justify-center">
+            {/* Instructional Area Heading */}
+            <div className="mb-6 flex-shrink-0">
+                <h3 className="text-sm font-medium dark:text-blue-400 text-blue-600 uppercase tracking-wide text-center font-['SF_Pro_Text']">
+                    {instructionalArea}
+                </h3>
+            </div>
 
-            {/* Main Card */}
-            <div
-                className="absolute w-full h-full rounded-xl flex items-center justify-center p-6 z-10"
-                style={{ backgroundColor: `#1d1c2d` }}
-            >
-                <h2 className="text-2xl font-normal text-blue-200 whitespace-pre-line text-center">
+            {/* Question - Scrollable if needed */}
+            <div className="flex-1 flex items-center justify-center overflow-y-auto">
+                <h2 className="text-2xl font-semibold dark:text-white text-gray-900 text-center leading-relaxed font-['SF_Pro_Text'] px-4">
                     {question}
                 </h2>
             </div>
