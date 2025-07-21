@@ -1,34 +1,14 @@
-// DashboardScreen.tsx
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProgressBar from "@/app/components/ProgressBar";
 import CalendarButton from "@/app/components/CalendarButton";
 import Announcement from "@/app/components/Announcement";
 import Dashboard from "@/app/components/Dashboard";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
-import { useUserAuth } from "@/app/AuthContext";
-import { getUserExamName } from "@/app/ApiService";
+import { useEvent } from "@/app/components/auth/EventProvider";
 
 const DashboardScreen: React.FC = () => {
-    const { user } = useUserAuth();
-    const [event, setEvent] = useState<string>("Loading...");
-
-    useEffect(() => {
-        const fetchEvent = async () => {
-            if (user?.uid) {
-                try {
-                    const fetchedData = await getUserExamName(user.uid);
-                    setEvent(fetchedData.exam_name || "No Event Found");
-                } catch (error) {
-                    console.error("Failed to fetch user name:", error);
-                    setEvent("Sign In to Start Studying!");
-                }
-            }
-        };
-
-        fetchEvent();
-    }, [user]);
+    const { event } = useEvent();
 
     return (
         <div className="max-h-screen min-h-lvh bg-[#2F3438] flex flex-col items-start justify-start w-full">

@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/components/auth/EventProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/Announcement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Announcement.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/EventSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/EventSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/StudyScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +109,9 @@
       <workItem from="1748453093446" duration="219000" />
       <workItem from="1748453344357" duration="2567000" />
       <workItem from="1748539315357" duration="7396000" />
+      <workItem from="1750020117522" duration="7291000" />
+      <workItem from="1751819557702" duration="5000" />
+      <workItem from="1753102219629" duration="1089000" />
     </task>
     <servers />
   </component>

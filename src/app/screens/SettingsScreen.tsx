@@ -8,29 +8,15 @@ import BottomNav from "@/app/components/Footer";
 import { auth } from "@/app/firebase";
 import { signOut, deleteUser } from "firebase/auth";
 import { useUserAuth } from "@/app/AuthContext";
-import {getUserExamName, getUserName} from "@/app/ApiService";
+import { getUserName } from "@/app/ApiService";
+import { useEvent } from "@/app/components/auth/EventProvider";
 
 const ProfilePage = () => {
     const { user } = useUserAuth();
+    const { event } = useEvent();
     const navigate = useNavigate();
     const [name, setName] = useState("Loading...");
-    const [event, setEvent] = useState<string>("Loading...");
 
-    useEffect(() => {
-        const fetchEvent = async () => {
-            if (user?.uid) {
-                try {
-                    const fetchedData = await getUserExamName(user.uid);
-                    setEvent(fetchedData.exam_name || "No Event Found");
-                } catch (error) {
-                    console.error("Failed to fetch user name:", error);
-                    setEvent("Sign In to Start Studying!");
-                }
-            }
-        };
-
-        fetchEvent();
-    }, [user]);
     useEffect(() => {
         const fetchName = async () => {
             if (user?.uid) {
@@ -41,6 +27,8 @@ const ProfilePage = () => {
                     console.error("Failed to fetch user name:", error);
                     setName("Unnamed User");
                 }
+            } else {
+                setName("Unnamed User");
             }
         };
 
@@ -80,9 +68,6 @@ const ProfilePage = () => {
                 <ProfileText name={name} role="Student" />
             </div>
             <div className="p-6">
-                {/*<div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp">*/}
-                {/*    <ProfileButton label="Change Events" onClick={() => {}} />*/}
-                {/*</div>*/}
                 <div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp items-center">
                     <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
                     <ProfileButton label="Delete your Account" variant="danger" onClick={handleDelete} />

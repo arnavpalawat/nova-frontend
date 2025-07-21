@@ -14,7 +14,7 @@ animate__animated animate__fadeInUp duration-25 fast
                 <span className="font-extrabold">...</span>{' '}
                 <span className="font-Lora">states</span>{' '}
                 <span className="font-extrabold">is in only</span>{' '}
-                <span className="font-Lora">3 weeks</span>
+                <span className="font-Lora">29 weeks</span>
                 <span className="font-extrabold">!</span>{' '}
 
             </p>

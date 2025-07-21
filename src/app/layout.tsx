@@ -12,6 +12,7 @@ import SettingsScreen from "@/app/screens/SettingsScreen";
 import ProfilePageWrapper from "@/app/screens/ProfilePageWrapper"; // wrapper for redirect
 
 import { UserAuthContextProvider } from "@/app/AuthContext";
+import { EventProvider } from "./components/auth/EventProvider";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout() {
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-visible`}>
         <UserAuthContextProvider>
+            <EventProvider>
             <Router>
                 <Routes>
                     <Route path="/login" element={<LoginScreen />} />
@@ -44,6 +46,7 @@ export default function RootLayout() {
                     <Route path="/profile" element={<ProfilePageWrapper />} />
                 </Routes>
             </Router>
+            </EventProvider>
         </UserAuthContextProvider>
         </body>
         </html>

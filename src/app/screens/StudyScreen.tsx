@@ -5,8 +5,9 @@ import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
-import {getExamByName, getUserExamName, updateFlashcards} from "@/app/ApiService";
+import {getExamByName, updateFlashcards} from "@/app/ApiService";
 import { useUserAuth } from "@/app/AuthContext";
+import { useEvent } from "@/app/components/auth/EventProvider";
 
 // Raw API shape
 interface RawQuestion {
@@ -44,24 +45,9 @@ const StudyScreen: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { user } = useUserAuth();
-    const [event, setEvent] = useState<string>("Loading...");
+    const { event } = useEvent(); // Use the event from context
     const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
     const [isComplete, setIsComplete] = useState(false);
-
-    useEffect(() => {
-        const fetchEvent = async () => {
-            if (user?.uid) {
-                try {
-                    const fetchedData = await getUserExamName(user.uid);
-                    setEvent(fetchedData.exam_name || "No Event Found");
-                } catch (error) {
-                    console.error("Failed to fetch user name:", error);
-                    setEvent("Sign In to Start Studying!");
-                }
-            }
-        };
-        fetchEvent();
-    }, [user]);
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -208,7 +194,7 @@ const StudyScreen: React.FC = () => {
                 <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
                     <div className="bg-white p-10 rounded-xl text-center text-black w-96">
                         <h2 className="text-2xl font-bold mb-4">🎉 Quiz Completed!</h2>
-                        <p className="mb-6">Great job! You’ve completed all the questions.</p>
+                        <p className="mb-6">Great job! You've completed all the questions.</p>
                         <button
                             className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition"
                             onClick={() => window.location.reload()}
