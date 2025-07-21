@@ -16,9 +16,9 @@ const BottomNav = ({ selected }: BottomNavProps) => {
     const { hasUID } = useNav();
 
     return (
-        <div className="fixed bottom-0 w-full flex justify-center dark:bg-gray-900/98 bg-gray-100/98  backdrop-blur-md border-t dark:border-gray-700/30 border-gray-300/50">
+        <div className="fixed bottom-0 w-full flex justify-center pointer-events-none">
             <div
-                className="relative w-full h-32 dark:bg-gray-800/60 bg-gray-200/60 overflow-hidden shadow-lg"
+                className="relative w-full h-32 dark:bg-gray-800 bg-gray-200 overflow-hidden shadow-lg pointer-events-auto"
                 style={{ clipPath: 'ellipse(100% 100% at 50% 100%)' }}
             >
                 <div className="absolute inset-0 flex justify-around items-center px-8">

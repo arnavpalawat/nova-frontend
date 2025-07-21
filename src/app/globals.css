@@ -17,8 +17,8 @@
 
 
 :root {
-  --background: #3B3C36;
-  --foreground: #191a18;
+  --background: #1a202c;
+  --foreground: #1a202c;
 }
 
 @theme font {
@@ -42,8 +42,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #191a18;
-    --foreground: #191a18;
+    --background: #1a202c;
+    --foreground: #1a202c;
   }
 }
 

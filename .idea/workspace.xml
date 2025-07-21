@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67af2ea7-d223-4e7e-b896-5fdead8a04d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/components/ui/Toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/constants/theme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/contexts/ThemeContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/ui/EventSelectorDropdown.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Announcement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Announcement.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/CalendarButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/CalendarButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/EventSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/EventSelector.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Logo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/ProgressBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ProgressBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/BarChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/BarChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/CalendarHeatmap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/CalendarHeatmap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/charts/DonutChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/charts/DonutChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profile/ProfileCircle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profile/ProfileCircle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profile/ProfileText.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profile/ProfileText.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profile/SettingsButtons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profile/SettingsButtons.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/ui/GlassCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ui/GlassCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/ui/SectionTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ui/SectionTitle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/ui/SettingsSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/ui/SettingsSection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/DashboardScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/screens/SettingsScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +110,7 @@
       <workItem from="1750020117522" duration="7291000" />
       <workItem from="1751819557702" duration="5000" />
       <workItem from="1753102219629" duration="3219000" />
-      <workItem from="1753105814003" duration="3607000" />
+      <workItem from="1753105814003" duration="4545000" />
     </task>
     <servers />
   </component>

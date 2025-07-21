@@ -13,6 +13,7 @@ import { signOut, deleteUser } from "firebase/auth";
 import { useUserAuth } from "@/app/contexts/AuthContext";
 import { getUserName } from "@/app/ApiService";
 import { useEvent } from "@/app/contexts/EventContext";
+import EventSelectorDropdown from "@/app/components/ui/EventSelectorDropdown";
 
 const ProfilePage = () => {
     const { user } = useUserAuth();
@@ -22,6 +23,9 @@ const ProfilePage = () => {
 
     // Settings state - only dark mode now
     const [isDarkMode, setIsDarkMode] = useState(true);
+    const [selectedEvent, setSelectedEvent] = useState("Entrepreneurship");
+    const [pendingEvent, setPendingEvent] = useState("Entrepreneurship");
+    const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
     useEffect(() => {
         const fetchName = async () => {
@@ -46,6 +50,13 @@ const ProfilePage = () => {
             setIsDarkMode(savedDarkMode === 'true');
         }
 
+        // Load selected event from localStorage
+        const savedEvent = localStorage.getItem('selectedEvent');
+        if (savedEvent) {
+            setSelectedEvent(savedEvent);
+            setPendingEvent(savedEvent);
+        }
+
         // Apply dark mode to document
         if (savedDarkMode === 'true' || savedDarkMode === null) {
             document.documentElement.classList.add('dark');
@@ -65,6 +76,22 @@ const ProfilePage = () => {
         } else {
             document.documentElement.classList.remove('dark');
         }
+    };
+
+    const handleEventChange = (event: string) => {
+        setPendingEvent(event);
+        setHasUnsavedChanges(event !== selectedEvent);
+    };
+
+    const handleConfirmEventChange = () => {
+        setSelectedEvent(pendingEvent);
+        localStorage.setItem('selectedEvent', pendingEvent);
+        setHasUnsavedChanges(false);
+    };
+
+    const handleCancelEventChange = () => {
+        setPendingEvent(selectedEvent);
+        setHasUnsavedChanges(false);
     };
 
     const handleSignOut = async () => {
@@ -118,11 +145,47 @@ const ProfilePage = () => {
                         />
                     </SettingsSection>
 
+                    {/* Change Events Section */}
+                    <SettingsSection
+                        title="Change Events"
+                        description="Select your competition event"
+                        className="animate-[fadeInUp_0.9s_ease-out]"
+                    >
+                        <div className="space-y-4">
+                            <div className="flex flex-col">
+                                <label className="text-sm dark:text-gray-400 text-gray-600 mb-2 font-['SF_Pro_Text']">
+                                    Current Event
+                                </label>
+                                <EventSelectorDropdown
+                                    selectedEvent={pendingEvent}
+                                    onEventChange={handleEventChange}
+                                />
+                            </div>
+
+                            {hasUnsavedChanges && (
+                                <div className="flex gap-3 pt-2">
+                                    <button
+                                        onClick={handleConfirmEventChange}
+                                        className="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-xl transition-all duration-200 font-medium font-['SF_Pro_Text']"
+                                    >
+                                        Confirm Selection
+                                    </button>
+                                    <button
+                                        onClick={handleCancelEventChange}
+                                        className="flex-1 px-4 py-2 dark:bg-gray-700/50 bg-gray-300/70 dark:hover:bg-gray-600/50 hover:bg-gray-400/80 dark:text-gray-200 text-gray-800 rounded-xl transition-all duration-200 font-medium font-['SF_Pro_Text']"
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </SettingsSection>
+
                     {/* Account Actions */}
                     <SettingsSection
                         title="Account"
                         description="Manage your account settings"
-                        className="animate-[fadeInUp_1s_ease-out]"
+                        className="animate-[fadeInUp_1.1s_ease-out]"
                     >
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
@@ -130,6 +193,31 @@ const ProfilePage = () => {
                         </div>
                     </SettingsSection>
                 </div>
+
+                {/* Unsaved changes confirmation */}
+                {hasUnsavedChanges && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm mx-auto">
+                            <p className="text-gray-800 dark:text-gray-200 mb-4">
+                                You have unsaved changes. Do you want to save them?
+                            </p>
+                            <div className="flex justify-end gap-2">
+                                <button
+                                    onClick={handleConfirmEventChange}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                >
+                                    Yes, save
+                                </button>
+                                <button
+                                    onClick={handleCancelEventChange}
+                                    className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-400 transition-colors"
+                                >
+                                    No, discard
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Bottom spacing for navigation */}
                 <div className="h-24"></div>
