@@ -7,6 +7,7 @@ import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
 import GlassCard from "@/app/components/ui/GlassCard";
 import SettingsSection from "@/app/components/ui/SettingsSection";
+import LoadingSpinner from "@/app/components/ui/LoadingSpinner";
 import Toggle from "@/app/components/ui/Toggle";
 import { auth } from "@/app/firebase";
 import { signOut, deleteUser } from "firebase/auth";
@@ -19,7 +20,8 @@ const ProfilePage = () => {
     const { user } = useUserAuth();
     const { event } = useEvent();
     const navigate = useNavigate();
-    const [name, setName] = useState("Loading...");
+    const [name, setName] = useState("");
+    const [nameLoading, setNameLoading] = useState(true);
 
     // Settings state - only dark mode now
     const [isDarkMode, setIsDarkMode] = useState(true);
@@ -31,14 +33,18 @@ const ProfilePage = () => {
         const fetchName = async () => {
             if (user?.uid) {
                 try {
+                    setNameLoading(true);
                     const fetchedData = await getUserName(user.uid);
                     setName(fetchedData?.name || "Unnamed User");
                 } catch (error) {
                     console.error("Failed to fetch user name:", error);
                     setName("Unnamed User");
+                } finally {
+                    setNameLoading(false);
                 }
             } else {
                 setName("Unnamed User");
+                setNameLoading(false);
             }
         };
 
@@ -126,23 +132,29 @@ const ProfilePage = () => {
                 <GlassCard className="text-center animate-[fadeInUp_0.6s_ease-out]">
                     <ProfileCircle />
                     <div className="mt-4">
-                        <ProfileText name={name} role="Student" />
+                        {nameLoading ? (
+                            <div className="py-2">
+                                <LoadingSpinner size="sm" text="" className="h-12" />
+                            </div>
+                        ) : (
+                            <ProfileText name={name} role="Student" />
+                        )}
                     </div>
                 </GlassCard>
 
                 {/* Settings Sections */}
                 <div className="grid grid-cols-1 gap-6">
                     {/* Preferences - Only Dark Mode */}
+                    {/* Account Actions */}
                     <SettingsSection
-                        title="Preferences"
-                        description="Customize your experience"
-                        className="animate-[fadeInUp_0.8s_ease-out]"
+                        title="Account"
+                        description="Manage your account settings"
+                        className="animate-[fadeInUp_1.1s_ease-out]"
                     >
-                        <Toggle
-                            isEnabled={isDarkMode}
-                            onToggle={handleDarkModeToggle}
-                            label="Dark Mode"
-                        />
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
+                            <ProfileButton label="Delete Account" variant="danger" onClick={handleDelete} />
+                        </div>
                     </SettingsSection>
 
                     {/* Change Events Section */}
@@ -181,17 +193,7 @@ const ProfilePage = () => {
                         </div>
                     </SettingsSection>
 
-                    {/* Account Actions */}
-                    <SettingsSection
-                        title="Account"
-                        description="Manage your account settings"
-                        className="animate-[fadeInUp_1.1s_ease-out]"
-                    >
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
-                            <ProfileButton label="Delete Account" variant="danger" onClick={handleDelete} />
-                        </div>
-                    </SettingsSection>
+
                 </div>
 
                 {/* Unsaved changes confirmation */}
@@ -229,3 +231,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface EventSelectorDropdownProps {
@@ -11,6 +11,8 @@ const EventSelectorDropdown: React.FC<EventSelectorDropdownProps> = ({
   onEventChange
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [shouldOpenUpward, setShouldOpenUpward] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const events = [
     "Business Administration Core",
@@ -22,6 +24,19 @@ const EventSelectorDropdown: React.FC<EventSelectorDropdownProps> = ({
     "Personal Financial Literacy"
   ];
 
+  useEffect(() => {
+    if (isOpen && buttonRef.current) {
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const dropdownHeight = events.length * 48 + 16; // Approximate height
+      const spaceBelow = viewportHeight - buttonRect.bottom;
+      const spaceAbove = buttonRect.top;
+
+      // Open upward if there's not enough space below but enough space above
+      setShouldOpenUpward(spaceBelow < dropdownHeight && spaceAbove > dropdownHeight);
+    }
+  }, [isOpen, events.length]);
+
   const handleEventSelect = (event: string) => {
     onEventChange(event);
     setIsOpen(false);
@@ -30,6 +45,7 @@ const EventSelectorDropdown: React.FC<EventSelectorDropdownProps> = ({
   return (
     <div className="relative z-50">
       <button
+        ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-3 rounded-xl dark:bg-gray-800/50 bg-gray-300/50 border dark:border-gray-700/50 border-gray-400/50 transition-all duration-200"
       >
@@ -50,7 +66,9 @@ const EventSelectorDropdown: React.FC<EventSelectorDropdownProps> = ({
             className="fixed inset-0 z-[9998]"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-full left-0 right-0 mt-1 dark:bg-gray-800 bg-gray-200 rounded-xl border dark:border-gray-700/50 border-gray-400/50 shadow-xl z-[9999] overflow-hidden max-h-60 overflow-y-auto">
+          <div className={`absolute left-0 right-0 mt-1 dark:bg-gray-800 bg-gray-200 rounded-xl border dark:border-gray-700/50 border-gray-400/50 shadow-xl z-[9999] overflow-hidden max-h-60 overflow-y-auto ${
+            shouldOpenUpward ? 'bottom-full mb-1' : 'top-full'
+          }`}>
             {events.map((event) => (
               <button
                 key={event}

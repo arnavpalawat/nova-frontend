@@ -5,6 +5,7 @@ import AnswerSubmit from "@/app/components/study/AnswerSubmitButton";
 import ProgressBar from "@/app/components/ProgressBar";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
+import LoadingSpinner from "@/app/components/ui/LoadingSpinner";
 import {getExamByName, updateFlashcards} from "@/app/ApiService";
 import { useUserAuth } from "@/app/contexts/AuthContext";
 import { useEvent } from "@/app/contexts/EventContext";
@@ -31,12 +32,6 @@ type Question = {
         name: string;
     };
 };
-
-const Spinner = () => (
-    <div className="flex justify-center items-center h-40 w-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 dark:border-white border-gray-900 border-t-transparent transition-all duration-200" />
-    </div>
-);
 
 const StudyScreen: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -110,8 +105,7 @@ const StudyScreen: React.FC = () => {
                 <Header event={event} />
                 <div className="flex-1 flex items-center justify-center px-4">
                     <div className="dark:bg-gray-800/30 bg-gray-200/80 backdrop-blur-md rounded-2xl shadow-lg border dark:border-gray-700/30 border-gray-300/50 p-8">
-                        <Spinner />
-                        <p className="text-center dark:text-white text-gray-900 mt-4 font-['SF_Pro_Text']">Loading questions...</p>
+                        <LoadingSpinner text="Loading questions..." />
                     </div>
                 </div>
                 <BottomNav selected="book" />
@@ -174,9 +168,15 @@ const StudyScreen: React.FC = () => {
                                             key={index}
                                             answer={answer}
                                             isSelected={selectedAnswer === answer}
-                                            onClick={() => setSelectedAnswer(answer)}
+                                            onClick={() => {
+                                                // Prevent new answer selection when feedback is shown
+                                                if (!feedback) {
+                                                    setSelectedAnswer(answer);
+                                                }
+                                            }}
                                             isCorrect={feedback === 'correct' && selectedAnswer === answer}
                                             isWrong={feedback === 'wrong' && selectedAnswer === answer}
+                                            showFeedback={!!feedback}
                                         />
                                     ))}
                                 </div>
@@ -189,13 +189,16 @@ const StudyScreen: React.FC = () => {
                                     </div>
                                 )}
 
-                                <div className="mt-auto pt-4 border-t dark:border-gray-700/30 border-gray-300/50">
-                                    <AnswerSubmit
-                                        selectedAnswer={selectedAnswer}
-                                        correctAnswer={questions[currentIndex]?.answers[questions[currentIndex]?.correctIndex - 1] || ""}
-                                        onSubmit={handleSubmit}
-                                    />
-                                </div>
+                                {/* Submit Button - Only show when no feedback is active */}
+                                {!feedback && (
+                                    <div className="mt-auto pt-4 border-t dark:border-gray-700/30 border-gray-300/50">
+                                        <AnswerSubmit
+                                            selectedAnswer={selectedAnswer}
+                                            correctAnswer={questions[currentIndex]?.answers[questions[currentIndex]?.correctIndex - 1] || ""}
+                                            onSubmit={handleSubmit}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
