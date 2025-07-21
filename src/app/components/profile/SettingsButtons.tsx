@@ -1,23 +1,24 @@
 import React from 'react';
 import {ChevronRight} from "lucide-react";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-const ProfileButton = ({ label, onClick, variant = 'default' }) => {
-    const baseStyle = 'flex justify-between items-center px-6 py-5 rounded-full text-sm font-medium w-1/2';
+interface ProfileButtonProps {
+    label: string;
+    onClick: () => void;
+    variant?: 'default' | 'signout' | 'danger';
+}
+
+const ProfileButton: React.FC<ProfileButtonProps> = ({ label, onClick, variant = 'default' }) => {
+    const baseStyle = 'flex justify-between items-center px-6 py-4 rounded-2xl text-sm font-medium w-full transition-all duration-200 ease-in-out';
     const variants = {
-        default: 'bg-[#1d1c2d] text-[#848abc]',
-        signout: 'bg-[#a5c7fa] text-[#1d1c2d]',
-        danger: 'bg-[#a53a39] text-white',
+        default: 'bg-gray-700/50 text-gray-200 hover:bg-gray-600/50 border border-gray-600/30',
+        signout: 'bg-blue-500 text-white hover:bg-blue-600 border border-blue-400/30',
+        danger: 'bg-red-500/80 text-white hover:bg-red-600 border border-red-400/30',
     };
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    const vars = variants[variant];
     return (
-        <button onClick={onClick} className={`${baseStyle} ${vars}`}>
-            <span>{label}</span>
-            <ChevronRight className="h-8 w-8" />
+        <button onClick={onClick} className={`${baseStyle} ${variants[variant]}`}>
+            <span className="font-['SF_Pro_Text']">{label}</span>
+            <ChevronRight className="h-5 w-5" />
         </button>
     );
 };

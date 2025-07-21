@@ -5,6 +5,9 @@ import ProfileText from "@/app/components/profile/ProfileText";
 import ProfileCircle from "@/app/components/profile/ProfileCircle";
 import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
+import GlassCard from "@/app/components/ui/GlassCard";
+import SettingsSection from "@/app/components/ui/SettingsSection";
+import Toggle from "@/app/components/ui/Toggle";
 import { auth } from "@/app/firebase";
 import { signOut, deleteUser } from "firebase/auth";
 import { useUserAuth } from "@/app/contexts/AuthContext";
@@ -16,6 +19,9 @@ const ProfilePage = () => {
     const { event } = useEvent();
     const navigate = useNavigate();
     const [name, setName] = useState("Loading...");
+
+    // Settings state - only dark mode now
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     useEffect(() => {
         const fetchName = async () => {
@@ -33,7 +39,33 @@ const ProfilePage = () => {
         };
 
         fetchName();
+
+        // Load dark mode setting from localStorage
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode !== null) {
+            setIsDarkMode(savedDarkMode === 'true');
+        }
+
+        // Apply dark mode to document
+        if (savedDarkMode === 'true' || savedDarkMode === null) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     }, [user]);
+
+    const handleDarkModeToggle = () => {
+        const newValue = !isDarkMode;
+        setIsDarkMode(newValue);
+        localStorage.setItem('darkMode', newValue.toString());
+
+        // Apply/remove dark class to document
+        if (newValue) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    };
 
     const handleSignOut = async () => {
         try {
@@ -59,21 +91,51 @@ const ProfilePage = () => {
     };
 
     return (
-        <div className="bg-[#2F3438] min-h-screen space-y-4 w-screen">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-slate-800 flex flex-col w-full overflow-hidden">
             <Header event={event} />
-            <div className={"animate__animated animate__fadeInUp"}>
-                <ProfileCircle />
-            </div>
-            <div className="animate__animated animate__fadeInUp">
-                <ProfileText name={name} role="Student" />
-            </div>
-            <div className="p-6">
-                <div className="mt-6 flex gap-4 justify-center animate__animated animate__fadeInUp items-center">
-                    <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
-                    <ProfileButton label="Delete your Account" variant="danger" onClick={handleDelete} />
+
+            <div className="flex-1 px-4 sm:px-6 py-4 space-y-6 overflow-y-auto scrollbar-hide">
+                {/* Profile Section */}
+                <GlassCard className="text-center animate-[fadeInUp_0.6s_ease-out]">
+                    <ProfileCircle />
+                    <div className="mt-4">
+                        <ProfileText name={name} role="Student" />
+                    </div>
+                </GlassCard>
+
+                {/* Settings Sections */}
+                <div className="grid grid-cols-1 gap-6">
+                    {/* Preferences - Only Dark Mode */}
+                    <SettingsSection
+                        title="Preferences"
+                        description="Customize your experience"
+                        className="animate-[fadeInUp_0.8s_ease-out]"
+                    >
+                        <Toggle
+                            isEnabled={isDarkMode}
+                            onToggle={handleDarkModeToggle}
+                            label="Dark Mode"
+                        />
+                    </SettingsSection>
+
+                    {/* Account Actions */}
+                    <SettingsSection
+                        title="Account"
+                        description="Manage your account settings"
+                        className="animate-[fadeInUp_1s_ease-out]"
+                    >
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <ProfileButton label="Sign Out" variant="signout" onClick={handleSignOut} />
+                            <ProfileButton label="Delete Account" variant="danger" onClick={handleDelete} />
+                        </div>
+                    </SettingsSection>
                 </div>
+
+                {/* Bottom spacing for navigation */}
+                <div className="h-24"></div>
             </div>
-            <BottomNav selected={"settings"} />
+
+            <BottomNav selected="settings" />
         </div>
     );
 };

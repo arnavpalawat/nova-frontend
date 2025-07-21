@@ -1,6 +1,8 @@
 import { BarChart } from "@/app/components/charts/BarChart";
 import { DonutChart } from "@/app/components/charts/DonutChart";
 import { CalendarHeatmap } from "@/app/components/charts/CalendarHeatmap";
+import GlassCard from "@/app/components/ui/GlassCard";
+import SectionTitle from "@/app/components/ui/SectionTitle";
 
 export default function Dashboard() {
     const barData = [3, 6, 4, 10, 7, 1, 8];
@@ -16,30 +18,40 @@ export default function Dashboard() {
     ];
     const donut1Data = [60, 40];
     const donut2Data = [30, 70];
-    const donutColors = ["#565f8a", "#bae3f8"];
+    const donutColors = ["#6b7280", "#3b82f6"]; // Changed to gray and blue
 
     return (
-        <div className="p-8 bg-[#2F3438] text-[#e4e2f8] justify-evenly w-full my-20 animate__animated animate__fadeInUp duration-25 fast">
-            <div className="flex gap-8">
-                <section className="flex-1">
-                    <h2 className="mb-4 text-xl font-semibold">This Week in NOVA</h2>
-                    <div className={'py-5'}>
+        <div className="space-y-6">
+            <SectionTitle
+                title="Analytics Dashboard"
+                subtitle="Your learning insights and progress"
+            />
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Weekly Progress Chart */}
+                <GlassCard hover className="lg:col-span-1 flex flex-col">
+                    <h3 className="mb-4 text-lg font-semibold text-white text-center">This Week in NOVA</h3>
+                    <div className="flex-1 flex items-center justify-center py-4">
                         <BarChart data={barData} />
                     </div>
-                </section>
-                <section className="flex-1">
-                    <h2 className="mb-4 text-xl font-semibold">Calendar Heatmap</h2>
-                    <CalendarHeatmap data={calendarData} />
-                </section>
-                <section className="flex-1 ">
-                    <h2 className="mb-4 text-xl font-semibold">Core Instructional Areas</h2>
-                    <div className={"float-left my-1"}>
-                        <DonutChart data={donut1Data} colors={donutColors} label={"Product-Service Marketing"}/>
+                </GlassCard>
+
+                {/* Calendar Heatmap */}
+                <GlassCard hover className="lg:col-span-1 flex flex-col">
+                    <h3 className="mb-4 text-lg font-semibold text-white text-center">Calendar Heatmap</h3>
+                    <div className="flex-1 flex items-center justify-center">
+                        <CalendarHeatmap data={calendarData} />
                     </div>
-                    <div className={"float-left px-2.5 my-1"}>
-                        <DonutChart data={donut2Data} colors={donutColors}  label={"Promotion"}/>
+                </GlassCard>
+
+                {/* Core Areas */}
+                <GlassCard hover className="lg:col-span-1 flex flex-col">
+                    <h3 className="mb-4 text-lg font-semibold text-white text-center">Core Instructional Areas</h3>
+                    <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+                        <DonutChart data={donut1Data} colors={donutColors} label={"Product-Service Marketing"} />
+                        <DonutChart data={donut2Data} colors={donutColors} label={"Promotion"} />
                     </div>
-                </section>
+                </GlassCard>
             </div>
         </div>
     );

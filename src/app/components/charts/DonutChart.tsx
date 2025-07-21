@@ -1,10 +1,12 @@
 import React from "react";
 
-// 3. Donut Chart component
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-export function DonutChart({ data, colors, label}) {
-    // data = array of numeric values, colors = array of colors, labels = array of labels
+interface DonutChartProps {
+    data: number[];
+    colors: string[];
+    label: string;
+}
+
+export function DonutChart({ data, colors, label }: DonutChartProps) {
     const total = data.reduce((a: number, b: number) => a + b, 0);
 
     let cumulativePercent = 0;
@@ -23,23 +25,23 @@ export function DonutChart({ data, colors, label}) {
         const largeArcFlag = percent > 0.5 ? 1 : 0;
 
         const pathData = [
-            `M ${startX} ${startY}`, // Move to start point
-            `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`, // Arc to end point
-            "L 0 0", // Line back to center
+            `M ${startX} ${startY}`,
+            `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`,
+            "L 0 0",
         ].join(" ");
 
         return (
-            <path key={index} d={pathData} fill={colors[index]} stroke="#222" strokeWidth="0.01" />
+            <path key={index} d={pathData} fill={colors[index]} stroke="#374151" strokeWidth="0.01" />
         );
     };
 
     return (
-        <div className={"columns-1 justify-items-center"}>
-            <svg viewBox="-1 -1 2 2" className="w-48 h-48 mx-auto">
+        <div className="flex flex-col items-center">
+            <svg viewBox="-1 -1 2 2" className="w-32 h-32">
                 {data.map((value: number, index: number) => createSlice(value / total, index))}
-                <circle cx="0" cy="0" r="0.5" fill="#222" />
+                <circle cx="0" cy="0" r="0.5" fill="#374151" />
             </svg>
-            <p>{label}</p>
+            <p className="text-sm text-gray-300 mt-2 font-['SF_Pro_Text'] text-center">{label}</p>
         </div>
     );
 }
