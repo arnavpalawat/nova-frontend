@@ -7,14 +7,14 @@ import Header from "@/app/components/Header";
 import BottomNav from "@/app/components/Footer";
 import GlassCard from "@/app/components/ui/GlassCard";
 import SectionTitle from "@/app/components/ui/SectionTitle";
-import { useEvent } from "@/app/contexts/EventContext";
+import { useUserData } from "@/app/contexts/UserDataContext";
 
 const DashboardScreen: React.FC = () => {
-    const { event } = useEvent();
+    const { userData } = useUserData();
 
     return (
         <div className="min-h-screen bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 from-gray-100 to-slate-200 flex flex-col w-full overflow-hidden">
-            <Header event={event} />
+            <Header event={userData?.examName} />
 
             <div className="flex-1 px-4 sm:px-6 py-4 space-y-6 overflow-y-auto scrollbar-hide">
                 {/* Progress Section - Smaller */}

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { useUserAuth } from "@/app/contexts/AuthContext";
 import { getUserExamName } from "@/app/ApiService";
+import {useNav} from "@/app/contexts/NavContext";
 
 interface EventContextType {
     event: string;
@@ -20,13 +21,14 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     const [event, setEvent] = useState<string>("Loading...");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { hasUID } = useNav();
 
     const fetchEvent = async () => {
-        if (user?.uid) {
+        if (hasUID) {
             try {
                 setLoading(true);
                 setError(null);
-                const fetchedData = await getUserExamName(user.uid);
+                const fetchedData = await getUserExamName(user!.uid);
                 setEvent(fetchedData.exam_name || "No Event Found");
             } catch (error) {
                 console.error("Failed to fetch event:", error);

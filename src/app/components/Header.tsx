@@ -1,6 +1,5 @@
 import React from "react";
 import CategoryButton from "@/app/components/EventSelector";
-import LoadingSpinner from "@/app/components/ui/LoadingSpinner";
 import Logo from "./Logo";
 import { useEvent } from "@/app/contexts/EventContext";
 

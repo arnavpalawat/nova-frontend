@@ -8,7 +8,6 @@ import BottomNav from "@/app/components/Footer";
 import GlassCard from "@/app/components/ui/GlassCard";
 import SettingsSection from "@/app/components/ui/SettingsSection";
 import LoadingSpinner from "@/app/components/ui/LoadingSpinner";
-import Toggle from "@/app/components/ui/Toggle";
 import { auth } from "@/app/firebase";
 import { signOut, deleteUser } from "firebase/auth";
 import { useUserAuth } from "@/app/contexts/AuthContext";
@@ -24,7 +23,6 @@ const ProfilePage = () => {
     const [nameLoading, setNameLoading] = useState(true);
 
     // Settings state - only dark mode now
-    const [isDarkMode, setIsDarkMode] = useState(true);
     const [selectedEvent, setSelectedEvent] = useState("Entrepreneurship");
     const [pendingEvent, setPendingEvent] = useState("Entrepreneurship");
     const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -50,11 +48,6 @@ const ProfilePage = () => {
 
         fetchName();
 
-        // Load dark mode setting from localStorage
-        const savedDarkMode = localStorage.getItem('darkMode');
-        if (savedDarkMode !== null) {
-            setIsDarkMode(savedDarkMode === 'true');
-        }
 
         // Load selected event from localStorage
         const savedEvent = localStorage.getItem('selectedEvent');
@@ -62,27 +55,7 @@ const ProfilePage = () => {
             setSelectedEvent(savedEvent);
             setPendingEvent(savedEvent);
         }
-
-        // Apply dark mode to document
-        if (savedDarkMode === 'true' || savedDarkMode === null) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [user]);
-
-    const handleDarkModeToggle = () => {
-        const newValue = !isDarkMode;
-        setIsDarkMode(newValue);
-        localStorage.setItem('darkMode', newValue.toString());
-
-        // Apply/remove dark class to document
-        if (newValue) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    };
+        }, [user]);
 
     const handleEventChange = (event: string) => {
         setPendingEvent(event);
